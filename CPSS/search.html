@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0..200" />
+   <link rel="stylesheet" href="../ASS/style.css">
+   <title> E-Store </title>
+</head>
+
+<body>
+
+   <header class="header-search">
+      <div class="face">
+
+         <div class="logo">
+            <button class="button_Back">
+               <span class="material-symbols-outlined">
+                  arrow_back_ios
+               </span>
+            </button>
+         </div>
+
+         <div class="search-dwInput">
+            <div class="face">
+               <button>
+                  <span class="material-symbols-outlined">
+                     search
+                  </span>
+               </button>
+               <div class="abrir-pesquisa"> Pesquisar Produto... </div>
+            </div>
+         </div>
+
+         <div class="dw-navbar">
+            <button class="verItensCarrinho link_carrinho">
+               <span class="material-symbols-outlined">
+                  shopping_bag
+               </span>
+               <span class="numeros_Itens numeros_carrinho"> </span>
+            </button>
+         </div>
+
+      </div>
+   </header>
+
+   <main class="main-search">
+      <div class="face">
+         <div class="dw-resultado">
+         </div>
+      </div>
+   </main>
+
+   <!-- secctin para segestoes de pesquisas  -->
+   <section class="sugestoes">
+      <div class="face">
+         <section class="sugestoes_container">
+
+            <button class="voltar_segestoes">
+               <span class="material-symbols-outlined"> arrow_back_ios </span>
+            </button>
+
+            <article class="article-inputs">
+               <div class="face">
+                  <button class="button-pesquisar" id="input-pesquis">
+                     <span class="material-symbols-outlined">
+                        search
+                     </span>
+                  </button>
+                  <input type="text" id="input-pesquisar" placeholder="pesquisar produto...">
+               </div>
+            </article>
+         </section>
+
+         <div class="dw-sugestoes">
+
+         </div>
+
+      </div>
+   </section>
+
+   <section class="sect_avisoAdicionar">
+      <article class="face">
+         <div class="processo"></div>
+         <p class="avisoAdicionar"> Item adiconado ao carrinho </p>
+      </article>
+   </section>
+
+   <section class="carrinho">
+      <div class="voltar">
+         <div class="face">
+            <button class="voltar_Button">
+               voltar
+            </button>
+         </div>
+      </div>
+
+      <div class="face" id="faceItens">
+      </div>
+
+      <!-- confirmar dados de compra  -->
+      <div class="dadosDetalhes">
+         <div class="dOremoverDetalhes">
+
+         </div>
+
+         <div class="face" id="face_Compra">
+         </div>
+
+      </div>
+
+      <div class="dO_pagar">
+         <button class="pagamento">
+            comprar
+         </button>
+      </div>
+   </section>
+
+   <section class="ver_itens_carrinho">
+      <div class="face ver_container">
+         <article class="art_ver_remove">
+            <button class="material-symbols-outlined b_ver_remover"> close </button>
+         </article>
+
+         <article class="art_container_ver">
+
+         </article>
+      </div>
+   </section>
+
+
+   <footer class="footer">
+      <div class="face">
+
+         <div class="footer-container">
+
+            <!-- Marca -->
+            <div class="footer-box">
+               <h2 class="footer-logo">EVAN</h2>
+               <p>
+                  A sua loja online com estilo, qualidade e entrega segura.
+               </p>
+            </div>
+
+            <!-- Suporte -->
+            <div class="footer-box">
+               <h3>Suporte</h3>
+               <ul>
+                  <li><a href="#">Ajuda</a></li>
+                  <li><a href="#">Política de Privacidade</a></li>
+                  <li><a href="#">Termos de Uso</a></li>
+                  <li><a href="#">Contacto</a></li>
+               </ul>
+            </div>
+
+            <!-- Contactos -->
+            <div class="footer-box">
+               <h3>Contacte-nos</h3>
+               <p>Email: suporte@evan.com</p>
+               <p>Tel: +244 900 000 000</p>
+
+               <div class="footer-social">
+                  <span class="material-symbols-outlined">public</span>
+                  <span class="material-symbols-outlined">favorite</span>
+                  <span class="material-symbols-outlined">chat</span>
+               </div>
+            </div>
+
+         </div>
+
+         <div class="footer-bottom">
+            <p>© 2026 EVAN - Todos os direitos reservados</p>
+         </div>
+
+      </div>
+   </footer>
+
+   <script type="module" src="../JSS/sercah.js"></script>
+</body>
+
+</html>
