@@ -71,12 +71,8 @@ itensFillter.forEach(itens => {
 
 // FUNÇÃO PARA ENVIAR O ID PARA OUTRA PÁGINA
 function enviar(id) {
-
-   // converter lista inteira para string (JSON)
-   const itensConvertidos = JSON.stringify(itensVendas)
-
    // redirecionar para página de detalhes
-   window.location.href = "CPSS/../dets.html?id=" + id + "&itensConvertidos=" + itensConvertidos
+   window.location.href = "CPSS/../dets.html?id=" + id
 }
 
 if (itensFillter.length === 0) {
@@ -111,7 +107,7 @@ document.querySelector('.voltar_segestoes').addEventListener('click', () => {
 
 // função para normalizar texto (remover acentos e deixar minúsculo)
 function
- normalizar(texto) {
+   normalizar(texto) {
    return texto
       .toLowerCase()
       .normalize("NFD")
