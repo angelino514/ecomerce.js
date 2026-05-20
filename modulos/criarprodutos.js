@@ -21,14 +21,7 @@ export function criarProdutos({ produtos, pagina }) {
       let image = document.createElement('img');
       image.classList.add('container_img', 'evento');
       image.dataset.nome = 'detalhes'
-
-      if (pagina == 'index') {
-         image.src = getImage(produto.img)
-      }
-
-      else if (pagina == 'pesquisa' || pagina == 'categoria') {
-         image.src = getImage(produto.img)
-      }
+      image.src = ''
 
       image.addEventListener('click', () => {
          caminhoPaginaDetalhes({ dados: image.closest('.item').dataset.id, pagina: pagina })

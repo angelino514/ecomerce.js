@@ -23,6 +23,11 @@ if (dados != null) {
    resultadoCategoria({ valor: dados, pagina: pagina })
 }
 
+const img = document.querySelector('.container_img')
+if(img){
+   img.src = "../imgs/image.png"
+}
+
 export function resultadoCategoria({ valor, pagina }) {
    const filtroCategoria = itensVendas.filter(p => p.categoria == valor)
 
