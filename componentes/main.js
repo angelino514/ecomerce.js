@@ -1,4 +1,4 @@
-import { getImagePath } from "../modulos/verficarelemento.js";
+
 import { categorias } from "../modulos/categorias.js";
 import { filtarCategorias } from "../modulos/categorias.js";
 

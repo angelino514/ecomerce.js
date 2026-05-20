@@ -1,5 +1,5 @@
-import { getImagePath } from "./verficarelemento.js";
 import { caminhoPaginaDetalhes } from "./caminhosPaginas.js";
+import { getImage } from "./verficarelemento.js";
 
 // EXPORTAR  ITENS PARA ITENS CRIAR ITENS DA LISTA DE PRODUTOS
 export function criarProdutos({ produtos, pagina }) {
@@ -23,11 +23,11 @@ export function criarProdutos({ produtos, pagina }) {
       image.dataset.nome = 'detalhes'
 
       if (pagina == 'index') {
-         image.src = produto.img
+         image.src = getImage(produto.img)
       }
 
-      else if( pagina == 'pesquisa' || pagina == 'categoria') {
-         image.src = '../imgs/../' + produto.img
+      else if (pagina == 'pesquisa' || pagina == 'categoria') {
+         image.src = getImage(produto.img)
       }
 
       image.addEventListener('click', () => {
