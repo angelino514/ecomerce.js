@@ -38,6 +38,8 @@ function componenteCarrossel({ pagina }) {
    let carrosselItens = document.createElement('div');
    carrosselItens.classList.add('carrossel_itens');
 
+   
+
    categorias().forEach(iten => {
       // BUTTO CARROSSEL
       let itemBtn = document.createElement('button');
@@ -50,7 +52,7 @@ function componenteCarrossel({ pagina }) {
 
       let img = document.createElement('img');
       img.classList.add('img_category');
-      img.src = getImagePath(iten.img)
+      img.src = iten.img
 
       let text = document.createElement('p');
       text.classList.add('texto_container');

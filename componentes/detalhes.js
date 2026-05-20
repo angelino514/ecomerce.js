@@ -1,12 +1,11 @@
 import { itensVendas } from "../bancoDados.js"
-import { getImagePath } from "../modulos/verficarelemento.js"
 
-export function detalhesProduto({ id , pagina}) {
+export function detalhesProduto({ id, pagina }) {
 
    // VERIFICAR SE EXISTE ITEN QUE TEM O MESMO ID NOS ITENS VENDAS
-   const  iten = itensVendas.find(p => p.id === id)
-   if(!iten) return
-   
+   const iten = itensVendas.find(p => p.id === id)
+   if (!iten) return
+
 
    // CONTAINER PRINCIPAL
    const containerDetalhes = document.createElement('div')
@@ -49,12 +48,12 @@ export function detalhesProduto({ id , pagina}) {
    containerCarrossel.classList.add('container_carrosel_imgs')
 
    // IMAGENS
-   
-   for(let i = 0; i < iten.imgs.length ; i++){
+
+   for (let i = 0; i < iten.imgs.length; i++) {
 
       const scrollImg = document.createElement('img')
       scrollImg.classList.add('scrroll_container_imgs')
-      scrollImg.src = getImagePath(iten.imgs[i])
+      scrollImg.src = '../imgs/../' + iten.imgs[i]
 
       containerCarrossel.appendChild(scrollImg)
    }
@@ -145,7 +144,7 @@ export function detalhesProduto({ id , pagina}) {
    )
 
    btnCarrinho.textContent =
-   'Adicionar ao carrinho'
+      'Adicionar ao carrinho'
 
    // ADICIONAR BOTÕES
    faceBtns.appendChild(btnFavorito)
