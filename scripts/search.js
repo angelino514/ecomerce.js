@@ -1,0 +1,44 @@
+import { itensBanners, itensVendas } from "../bancoDados.js";
+import { componentesHeader } from "../componentes/header.js";
+import { componenteFooter } from "../componentes/footer.js";
+import { componenteMain } from "../componentes/main.js";
+import { componenteNavbarMobile } from "../componentes/navbar.js";
+import { criarProdutos } from "../modulos/criarprodutos.js";
+import { normalizarTexto } from "../modulos/nomralizar.js";
+
+const paginaActual = 'pesquisa'
+const search = document.querySelector('.search')
+if (search) {
+   search.appendChild(componentesHeader({ pagina: paginaActual }))
+   search.appendChild(componenteMain({ pagina: 'pesquisa' }))
+   search.appendChild(componenteNavbarMobile({pagina : paginaActual}))
+   search.appendChild(componenteFooter())
+}
+
+const parametros = new URLSearchParams(window.location.search)
+let dados = parametros.get('dados')
+let pagina = parametros.get('pagina')
+
+if (dados != null) {
+   resultadoPesuisa({ valor: dados, pagina: pagina })
+}
+
+export function resultadoPesuisa({ valor, pagina }) {
+   const listaResultado = itensVendas.filter(p => {
+      return normalizarTexto(p.iten).includes(normalizarTexto(valor)) || normalizarTexto(p.itenDesc).includes(normalizarTexto(valor))
+   })
+
+   const container_main = document.querySelector('.container_main')
+   if (container_main) {
+      if (listaResultado.length != 0) {
+         criarProdutos({ produtos : listaResultado , pagina : paginaActual})
+      }
+
+      else {
+         container_main.innerHTML = ''
+         let p = document.createElement('p')
+         p.textContent = 'Iten nao encontrado!'
+         container_main.appendChild(p)
+      }
+   }
+}

@@ -5,10 +5,6 @@
 
 let index = 0
 
-/* =========================================
-   DESCONTO GLOBAL APLICADO A PRODUTOS
-========================================= */
-export const desconto = 5
 
 /* =========================================
    BASE DE DADOS PRINCIPAL DOS PRODUTOS

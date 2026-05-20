@@ -1,0 +1,824 @@
+* {
+   margin: 0 !important;
+   padding: 0 !important;
+}
+
+html,
+body {
+   width: 100%;
+}
+
+html {
+   font-size: 15px;
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+}
+
+.button_relative {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+}
+
+.numeros_absulute {
+   position: absolute;
+   transform: translateY(-10px) translateX(10px);
+   font-weight: 500;
+   font-size: 0.9rem;
+   color: red;
+}
+
+input {
+   outline: none;
+   background-color: transparent;
+   border: none;
+}
+
+/* OCULTAR ITENS DO HEADER EM DIFERENTES PAGINA */
+.ocultar {
+   display: none;
+}
+
+
+/* ===================================
+  CONFIGURACOES GERAIS 
+======================================
+*/
+:root {
+   --color-primary: #fff;
+   --cinza-claro: #f2f2f2;
+   --E-STORE: #1877F2;
+
+}
+
+.face {
+   width: 95%;
+   max-width: 1600px;
+   margin: 0 auto !important;
+}
+
+.material-symbols-outlined {
+   font-size: 1.5rem;
+   color: rgb(70, 70, 70);
+}
+
+button {
+   background-color: transparent;
+   border: 0;
+   cursor: pointer;
+}
+
+a {
+   text-decoration: none !important;
+}
+
+.baners {
+   background-color: var(--cinza-claro);
+}
+
+.main {
+   flex: 1;
+}
+
+
+/* ================================
+  HEADER 
+  ==================================
+*/
+.header {
+   position: fixed;
+   top: 0;
+   background-color: var(--color-primary);
+   width: 100%;
+   z-index: 1000;
+   border-bottom: 1px solid gainsboro;
+   padding: 0.5rem 0 !important;
+}
+
+.header_none {
+   position: static;
+}
+
+.header>.face {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+/* ====================================
+LOGO
+=======================================
+ */
+
+.logo {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   justify-content: flex-start;
+}
+
+.E-STORE {
+   font-size: 1.5rem;
+   font-weight: 800;
+   color: var(--E-STORE);
+}
+
+/* =========================================================
+  SUGESTOES DE PESQUISA 
+  ==========================================================
+ */
+.container_input {
+   width: 60%;
+   max-width: 600px;
+}
+
+.container_input_activo {
+   width: 100%;
+   max-width: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   background-color: #fff;
+   z-index: 1000;
+   height: 100vh;
+   padding-top: 1rem !important;
+}
+
+.sugestoes>.face {
+   position: relative;
+}
+
+.sugestoes_input {
+   width: 100%;
+   align-items: center;
+}
+
+.sugestoes_content {
+   width: 100%;
+   display: flex;
+   margin: 0 auto !important;
+   max-width: 600px;
+   background-color: var(--cinza-claro);
+   border-radius: 30px;
+}
+
+.valor_sugestoes {
+   padding: 0.6rem !important;
+   width: 90%;
+   display: flex;
+   align-items: center;
+}
+
+.pesquisar {
+   align-items: center;
+   justify-content: center;
+   width: 10%;
+}
+
+.pesquisar>.material-symbols-outlined {
+   font-size: 1.2rem !important;
+
+}
+
+.container_sugestoes {
+   width: 100%;
+   display: none;
+   flex-direction: column;
+   margin-top: 1rem !important;
+   height: 90vh;
+   overflow-y: auto;
+   position: absolute;
+}
+
+.container_sugestoes.container_sugestoes_activo {
+   display: flex !important;
+}
+
+.buttons_sugestoes {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   max-width: 600px;
+   margin: 0.2rem auto !important;
+   padding: 0.5rem !important;
+   background-color: var(--cinza-claro);
+   font-size: 0.9rem;
+}
+
+.buttons_sugestoes>.material-symbols-outlined {
+   font-size: 1rem !important;
+}
+
+
+/* ====================================
+container_buttons_list
+=======================================
+ */
+.container_buttons_list {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   gap: 1rem;
+}
+
+.navbar_mobile {
+   display: none !important;
+}
+
+.button_list {
+   padding: 0.2rem !important;
+}
+
+/* ===================================
+  NABAR SCROLL DO HADER 
+  ====================================
+ */
+.navbar_header {
+   width: 95%;
+   max-width: 1600px;
+   margin: 0 auto !important;
+   overflow-x: hidden;
+   overflow-x: auto;
+   height: 30px;
+   padding-top: 0.5rem !important;
+   scrollbar-width: none;
+}
+
+.navbar_header::-webkit-scrollbar {
+   display: none;
+}
+
+
+.navbar_header>.face {
+   width: 100% !important;
+   display: flex;
+   gap: 0.5rem;
+   height: 100%;
+}
+
+.link_scroll {
+   padding: 0 1rem !important;
+   flex-shrink: 0;
+   background-color: var(--cinza-claro);
+   border-radius: 30px;
+   font-size: 0.9rem;
+   color: #000;
+   height: 20px;
+   display: flex !important;
+   align-items: center !important;
+   justify-content: start !important;
+}
+
+/* ====================================================
+CONTEUDO PRINCIPAL
+======================================================
+ */
+.main {
+   width: 100%;
+   padding-top: 6.5rem !important;
+   padding-bottom: 2rem !important;
+}
+
+.main_activo {
+   padding-top: 2rem !important;
+}
+
+/* ======================================== 
+BANNERS
+===========================================
+*/
+.baners_itens {
+   width: 100% !important;
+   height: 400px !important;
+   border-radius: 30px;
+   background-color: var(--cinza-claro);
+}
+
+.carousel-item img {
+   width: 100% !important;
+   height: 100% !important;
+   object-fit: contain;
+   border-radius: 30px;
+}
+
+/*========================= 
+   CONTAINER MAIN
+ ==========================*/
+.container_main {
+   margin-top: 2rem !important;
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   gap: 0.5rem;
+}
+
+.containers_list_itens {
+   background-color: var(--cinza-claro);
+   padding: 0.6rem 0.5rem !important;
+   overflow: hidden;
+   border-radius: 10px;
+}
+
+.container_img {
+   width: 100%;
+   height: auto;
+   max-height: 300px;
+   aspect-ratio: 1/1;
+   object-fit: contain;
+   cursor: pointer;
+}
+
+.container_detaila {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.content_itens {
+   max-width: 80%;
+}
+
+
+/* =======================================================
+CARROSSEL SCROL
+==========================================================
+*/
+.container_carrossel {
+   height: 180px;
+   margin: 2rem auto !important;
+   position: relative;
+}
+
+.buttons_carrossel {
+   position: absolute;
+   top: 40%;
+   background-color: #1e1e1e;
+   color: #fff;
+   z-index: 1;
+}
+
+.rith {
+   right: 0;
+}
+
+.buttons_carrossel>.material-symbols-outlined {
+   padding: 0.5rem !important;
+}
+
+.carrossel {
+   position: relative;
+   height: 100%;
+   width: 100%;
+   overflow-x: hidden;
+   overflow-x: auto;
+   scroll-snap-type: x mandatory;
+   scroll-behavior: smooth;
+   scrollbar-width: none;
+   margin: 2rem 0 !important;
+}
+
+.carrossel::-webkit-scrollbar {
+   display: none;
+}
+
+.carrossel_itens {
+   height: 100%;
+   display: flex;
+   position: absolute;
+   gap: 0.5rem;
+}
+
+.itens_carrossel_content {
+   width: 150px;
+   height: 100%;
+   background-color: var(--cinza-claro);
+   border-radius: 10px;
+   scroll-snap-align: start;
+}
+
+.img_category {
+   width: 100%;
+   height: 80%;
+   object-fit: contain;
+}
+
+.texto_container {
+   font-size: 0.8rem;
+   color: #000;
+   text-align: center;
+}
+
+/* =========================================== 
+  SEGUND BANNERS 
+===============================================*/
+.container_second_banners {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   margin-top: 2rem !important;
+   gap: 0.5rem;
+}
+
+.container_second_banners>.baners_second {
+   height: 300px !important;
+}
+
+/* ===================================
+ FOOTER 
+ =====================================
+ */
+.footer {
+   width: 100%;
+   background: #1e1e1e;
+   color: #fff;
+   height: fit-content;
+}
+
+.footer-content {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   gap: 20px;
+}
+
+.footer-section {
+   flex: 1;
+   min-width: 200px;
+}
+
+.footer-section h3 {
+   color: #00aaff;
+   margin-bottom: 10px !important;
+}
+
+.footer-section ul {
+   list-style: none;
+}
+
+.footer-section ul li {
+   margin-bottom: 8px;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.footer-section ul li:hover {
+   color: #00aaff;
+}
+
+.footer-bottom {
+   text-align: center;
+   margin-top: 30px !important;
+   padding-top: 15px !important;
+   border-top: 1px solid #333;
+   font-size: 14px;
+   opacity: 0.8;
+}
+
+
+/* =====================================================
+  CONFIGURACOES DA PAGINA DETALHES
+========================================================
+*/
+
+.container_detalhes {
+   width: 100%;
+}
+
+.container_detalhes>.face {
+   display: grid;
+   grid-template-columns: 1fr 1.5fr;
+   gap: 1rem;
+}
+
+.carrossel_imgs {
+   position: relative;
+   height: 450px;
+}
+
+.button_detalhes {
+   position: absolute;
+   top: 45%;
+}
+
+.button_detalhes>.material-symbols-outlined {
+   font-size: 2.5rem !important;
+}
+
+.riht {
+   right: 0;
+}
+
+.container_carrosel_imgs {
+   display: flex;
+   gap: 0.5rem;
+   height: 100%;
+   width: 100%;
+   overflow-x: hidden;
+   overflow-x: auto;
+   scroll-snap-type: x mandatory;
+   scroll-behavior: smooth;
+   scrollbar-width: none;
+}
+
+.container_carrosel_imgs::-webkit-scrollbar {
+   display: none;
+}
+
+.scrroll_container_imgs {
+   width: 80%;
+   height: 100%;
+   background-color: var(--cinza-claro);
+   flex-shrink: 0;
+   scroll-snap-align: start;
+   object-fit: contain;
+}
+
+.content_detalhes {
+   display: flex;
+   flex-direction: column;
+   padding: 3rem !important;
+}
+
+.nome_iten {
+   font-weight: bolder;
+   font-size: 1.5rem;
+   padding-top: 1rem !important;
+}
+
+.precoBox_h2 {
+   font-size: 1.5rem;
+   padding-top: 0.5rem !important;
+}
+
+.descricao {
+   color: #000;
+   padding-top: 1rem !important;
+   font-size: 1rem;
+}
+
+.container_dados_radios {
+   padding: 1rem 0 !important;
+   display: flex;
+   gap: 0.5rem;
+}
+
+.label_inputs {
+   padding: 0.5rem 1rem !important;
+   border: 1px solid black;
+}
+
+/* BUTTON ACCOES  */
+.container_btns_accao>.face {
+   display: flex;
+   gap: 1rem;
+}
+
+.buttons_accao {
+   font-size: 0.9rem;
+}
+
+.btn_favorito {
+   border: 1px solid #000;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.btn_favorito>.material-symbols-outlined {
+   color: #000;
+}
+
+.btns_semilares {
+   padding: 0.5rem 2rem !important;
+   border-radius: 30px;
+}
+
+.btn_pedido {
+   background-color: var(--cinza-claro);
+}
+
+.btn_carrinho {
+   background-color: #1e1e1e;
+   color: #fff;
+}
+
+
+/* ================================
+RESPONSIVIDADE 
+===================================
+*/
+@media (max-width : 1220px) {
+
+   /* ===========================
+      CONTAINER INPUT 
+   ==============================
+    */
+   .container_input {
+      width: 60%;
+      max-width: none;
+   }
+
+   .container_input_activo {
+      width: 100%;
+      max-width: none;
+   }
+
+   .container_main {
+      grid-template-columns: repeat(4, 1fr);
+   }
+
+   /* ======================================== 
+     BANNERS
+    ===========================================
+   */
+   .baners_itens {
+      width: 100% !important;
+      height: 300px !important;
+      border-radius: 30px;
+      background-color: var(--cinza-claro);
+   }
+
+   /* =======================================================
+   CATEGORIAS 
+    =========================================================
+   */
+   .container_carrossel {
+      height: 150px;
+      margin: 2rem auto !important;
+      position: relative;
+   }
+
+
+   .itens_carrossel_content {
+      width: 130px;
+   }
+
+   .texto_container {
+      font-size: 0.8rem;
+      border-radius: 10px;
+   }
+
+   /*  =====================================
+       CONFIGURACOES DA PAGINA DE DETALHES
+      =====================================
+   */
+   .container_detalhes>.face {
+      display: grid;
+      grid-template-columns: 1fr;
+   }
+
+}
+
+@media (max-width : 600px) {
+
+   /* ================================
+       CONFIGURACOES PARA O MOBILE 
+     =================================
+   */
+   .ocultar_mobile {
+      display: none;
+   }
+
+   /* ================================
+     HEADER 
+       ==================================
+    */
+   .header>.face {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   /* ===========================
+      CONTAINER INPUT 
+   ==============================
+    */
+   .container_input {
+      width: 90%;
+      max-width: none;
+   }
+
+   .container_input_activo {
+      width: 100%;
+      max-width: none;
+   }
+
+   .navbar_mobile {
+      width: 100%;
+      display: flex !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-primary);
+      border: 1px solid gainsboro;
+      z-index: 1000;
+   }
+
+   .navbar_mobile>.face {
+      display: flex;
+      justify-content: space-between;
+   }
+
+   .link_mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0.5rem !important;
+   }
+
+   .link_activo .material-symbols-outlined {
+      color: var(--E-STORE);
+   }
+
+   .link_activo .text_span_link {
+      color: var(--E-STORE);
+      transition: 1s ease-in-out;
+   }
+
+   .text_span_link {
+      font-size: 0.8rem;
+      transition: 1s ease-in-out;
+   }
+
+   .abslute_mobile {
+      transform: translateY(-15px) translateX(10px);
+   }
+
+   /* ===================================
+    MAIN
+    =====================================
+   */
+   .container_main {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   /*======================================== 
+        BANNERS
+      ===========================================
+    */
+   .baners_itens {
+      width: 100% !important;
+      height: 200px !important;
+      border-radius: 30px;
+      background-color: var(--cinza-claro);
+   }
+
+   .carousel-item img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain;
+      border-radius: 30px;
+   }
+
+   /* =====================================
+       CONFIGURACOES DA PAGINA DE DETALHES
+      =====================================
+   */
+
+
+   .scrroll_container_imgs {
+      width: 100%;
+   }
+
+   .content_detalhes {
+      padding: 0 !important;
+   }
+
+
+   /* BUTTON ACCOES  */
+   .container_btns_accao {
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-primary);
+      z-index: 50;
+      padding: 1rem 0 !important;
+   }
+
+
+   .container_btns_accao>.face {
+      display: grid;
+      grid-template-columns: 0.2fr 1fr 1fr;
+      align-items: center;
+      gap: 0.5rem;
+   }
+
+   .buttons_accao {
+      padding: 0 !important;
+   }
+
+   .btns_semilares {
+      padding: 0.5rem 0 !important;
+      width: 100%;
+   }
+
+}
