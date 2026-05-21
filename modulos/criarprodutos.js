@@ -22,11 +22,11 @@ export function criarProdutos({ produtos, pagina }) {
       image.dataset.nome = 'detalhes'
 
       if (pagina == 'index') {
-         image.src = produto.img
+         image.src = 'imgs/' + produto.img
       }
 
       else if (pagina == 'pesquisa' || pagina == 'categoria') {
-         image.src = '../' + produto.img
+         image.src = '../imgs' + produto.img
       }
 
       image.addEventListener('click', () => {
