@@ -1,5 +1,4 @@
 import { caminhoPaginaDetalhes } from "./caminhosPaginas.js";
-import { getImage } from "./verficarelemento.js";
 
 // EXPORTAR  ITENS PARA ITENS CRIAR ITENS DA LISTA DE PRODUTOS
 export function criarProdutos({ produtos, pagina }) {
@@ -21,7 +20,14 @@ export function criarProdutos({ produtos, pagina }) {
       let image = document.createElement('img');
       image.classList.add('container_img', 'evento');
       image.dataset.nome = 'detalhes'
-      image.src = ''
+
+      if (pagina == 'index') {
+         image.src = produto.img
+      }
+
+      else if (pagina == 'pesquisa' || pagina == 'categoria') {
+         image.src = '../' + produto.img
+      }
 
       image.addEventListener('click', () => {
          caminhoPaginaDetalhes({ dados: image.closest('.item').dataset.id, pagina: pagina })
