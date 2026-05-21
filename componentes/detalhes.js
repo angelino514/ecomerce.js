@@ -53,7 +53,7 @@ export function detalhesProduto({ id, pagina }) {
 
       const scrollImg = document.createElement('img')
       scrollImg.classList.add('scrroll_container_imgs')
-      scrollImg.src = '../imgs/../' + iten.imgs[i]
+      scrollImg.src = '../imgs/' + iten.imgs[i]
 
       containerCarrossel.appendChild(scrollImg)
    }

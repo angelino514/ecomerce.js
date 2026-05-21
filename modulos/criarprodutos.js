@@ -21,12 +21,14 @@ export function criarProdutos({ produtos, pagina }) {
       image.classList.add('container_img', 'evento');
       image.dataset.nome = 'detalhes'
 
+      console.log(produto.img)
+
       if (pagina == 'index') {
          image.src = 'imgs/' + produto.img
       }
 
       else if (pagina == 'pesquisa' || pagina == 'categoria') {
-         image.src = '../imgs' + produto.img
+         image.src = '../imgs/' + produto.img
       }
 
       image.addEventListener('click', () => {
