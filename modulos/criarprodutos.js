@@ -21,8 +21,6 @@ export function criarProdutos({ produtos, pagina }) {
       image.classList.add('container_img', 'evento');
       image.dataset.nome = 'detalhes'
 
-      console.log(produto.img)
-
       if (pagina == 'index') {
          image.src = 'imgs/' + produto.img
       }
@@ -67,9 +65,7 @@ export function criarProdutos({ produtos, pagina }) {
       add.dataset.nome = 'carrinho'
 
       // ICONE DO CARRINHO
-      let icon = document.createElement('span');
-      icon.classList.add('material-symbols-outlined');
-      icon.textContent = 'add_shopping_cart';
+      let icon = document.createElement('img');
 
       // MOTAGEM
       precoBox.appendChild(spanPreco);

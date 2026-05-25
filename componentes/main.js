@@ -52,7 +52,7 @@ function componenteCarrossel({ pagina }) {
 
       let img = document.createElement('img');
       img.classList.add('img_category');
-      img.src = iten.img
+      img.src = '../imgs/' + iten.img
 
       let text = document.createElement('p');
       text.classList.add('texto_container');
@@ -110,11 +110,17 @@ export function componenteMain({ pagina }) {
    main.appendChild(carrossel_categoria)
    main.appendChild(containerMain);
 
-   if (pagina == 'categoria' || pagina == 'pesquisa' || pagina == 'detalhes') {
+   if (pagina == 'categoria' || pagina == 'pesquisa' || pagina == 'detalhes'
+       || pagina == 'lista' || pagina == 'favoritos') {
       container_benners.classList.add('ocultar')
       carrossel_categoria.classList.add('ocultar')
       main.classList.add('main_activo')
    }
+
+   if( pagina == 'lista' || pagina == 'favoritos') {
+      containerMain.classList.add('grid_list')
+   }
+
 
    return main;
 }

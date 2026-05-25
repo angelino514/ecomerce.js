@@ -5,6 +5,8 @@ import { componenteMain } from "../componentes/main.js";
 import { componenteNavbarMobile } from "../componentes/navbar.js";
 import { criarProdutos } from "../modulos/criarprodutos.js";
 import { normalizarTexto } from "../modulos/nomralizar.js";
+import { navegacaoNavbar } from "../modulos/evento.js";
+
 
 const paginaActual = 'pesquisa'
 const search = document.querySelector('.search')
@@ -13,6 +15,8 @@ if (search) {
    search.appendChild(componenteMain({ pagina: 'pesquisa' }))
    search.appendChild(componenteNavbarMobile({pagina : paginaActual}))
    search.appendChild(componenteFooter())
+
+   navegacaoNavbar({pagina : paginaActual})
 }
 
 const parametros = new URLSearchParams(window.location.search)

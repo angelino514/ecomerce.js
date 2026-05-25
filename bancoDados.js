@@ -48,7 +48,7 @@ const itensVendas = [
       categoria: "calças masculinas",
       itenDesc: "Camisa social masculina Calças “Burgor Lion” com design moderno e estilo urbano...",
       destaque: false,
-      promocao: true,
+      promocao: false,
       tamanho: ["M", "G", "GG"],
       cores: ['Preto']
    },

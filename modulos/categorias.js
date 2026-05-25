@@ -2,6 +2,7 @@ import { itensVendas } from "../bancoDados.js"
 import { caminhoPaginaCategoria } from "./caminhosPaginas.js"
 import { resultadoCategoria} from  "../scripts/categoria.js"
 
+// EVITAR DUPLICAR ITENS QUE JA EXISTE
 export function categorias(){
      const lisatCategoria = []
 

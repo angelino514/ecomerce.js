@@ -1,4 +1,16 @@
 import { itensVendas } from "../bancoDados.js"
+import { navegacaoLabels } from "../modulos/evento.js"
+import { addProdutosCompra } from "../modulos/addproduto.js"
+import { carrinho } from "../modulos/carrinho.js"
+import { favoritos } from "../modulos/favoritos.js"
+
+// ===============================
+// DADOS DA COMPRA 
+//================================
+export let coreSelecionada = ''
+export let tamanhoSelecionado = ''
+
+
 
 export function detalhesProduto({ id, pagina }) {
 
@@ -10,6 +22,8 @@ export function detalhesProduto({ id, pagina }) {
    // CONTAINER PRINCIPAL
    const containerDetalhes = document.createElement('div')
    containerDetalhes.classList.add('container_detalhes')
+   containerDetalhes.dataset.id = iten.id
+
 
    // FACE
    const face = document.createElement('div')
@@ -64,7 +78,6 @@ export function detalhesProduto({ id, pagina }) {
    carrosselImgs.appendChild(containerCarrossel)
 
 
-
    // =====================================
    // CONTEÚDO DETALHES
    // =====================================
@@ -112,18 +125,28 @@ export function detalhesProduto({ id, pagina }) {
    const faceBtns = document.createElement('div')
    faceBtns.classList.add('face')
 
-   // FAVORITO
+   // FAVORITOS
    const btnFavorito = document.createElement('button')
+   btnFavorito.dataset.accao = 'favorito'
    btnFavorito.classList.add(
       'buttons_accao',
-      'btn_favorito'
+      'btn_favorito',
    )
 
-   const iconFavorito = document.createElement('span')
-   iconFavorito.classList.add('material-symbols-outlined')
-   iconFavorito.textContent = 'favorite'
+   btnFavorito.addEventListener('click' , ()=>{
+       addProdutosCompra({
+         id: id,
+         cor: coreSelecionada,
+         tamanho: tamanhoSelecionado,
+         accao: btnFavorito.dataset.accao
+      })
+   })
 
-   btnFavorito.appendChild(iconFavorito)
+   const svgFavorito = document.createElement('img')
+   svgFavorito.src = '../svgs/favorito.svg'
+   svgFavorito.classList.add('svgs')
+
+   btnFavorito.appendChild(svgFavorito)
 
    // PEDIDO
    const btnPedido = document.createElement('button')
@@ -133,18 +156,37 @@ export function detalhesProduto({ id, pagina }) {
       'btns_semilares'
    )
 
+   // COMPRA IMEDIATA
+   btnPedido.addEventListener('click', () => {
+      addProdutosCompra({
+         id: id,
+         cor: coreSelecionada,
+         tamanho: tamanhoSelecionado,
+      })
+   })
+
    btnPedido.textContent = 'Fazer pedido'
 
    // CARRINHO
    const btnCarrinho = document.createElement('button')
+   btnCarrinho.dataset.accao = 'carrinho'
    btnCarrinho.classList.add(
       'buttons_accao',
       'btn_carrinho',
       'btns_semilares'
    )
 
-   btnCarrinho.textContent =
-      'Adicionar ao carrinho'
+   btnCarrinho.textContent = 'Adicionar ao carrinho'
+
+   // ADICIONAR AO CARRINHO
+   btnCarrinho.addEventListener('click', () => {
+      addProdutosCompra({
+         id: id,
+         cor: coreSelecionada,
+         tamanho: tamanhoSelecionado,
+         accao: btnCarrinho.dataset.accao
+      })
+   })
 
    // ADICIONAR BOTÕES
    faceBtns.appendChild(btnFavorito)
@@ -154,7 +196,6 @@ export function detalhesProduto({ id, pagina }) {
    containerBtns.appendChild(faceBtns)
 
 
-
    // =====================================
    // MONTAGEM FINAL
    // =====================================
@@ -162,15 +203,135 @@ export function detalhesProduto({ id, pagina }) {
    contentDetalhes.appendChild(nome)
    contentDetalhes.appendChild(precoBox)
    contentDetalhes.appendChild(descricao)
+
+   contentDetalhes.appendChild(criarOpcoesProduto({ itens: iten, pagina: 'detalhes' }))
+
    contentDetalhes.appendChild(containerBtns)
 
    face.appendChild(carrosselImgs)
    face.appendChild(contentDetalhes)
 
+
+
    containerDetalhes.appendChild(face)
-
-
 
    // RETORNO
    return containerDetalhes
+}
+
+
+
+function criarOpcoesProduto({ itens, pagina }) {
+
+   // CONTAINER PRINCIPAL
+   const containerOpcoes = document.createElement('div');
+   containerOpcoes.classList.add('container_opces');
+
+
+   // =========================
+   // CORES
+   // =========================
+
+   const opcoesCores = document.createElement('div');
+   opcoesCores.classList.add('opces_content', 'cores');
+
+   for (let i = 0; i < itens.cores.length; i++) {
+
+      let labelCor = document.createElement('label');
+      labelCor.classList.add('labeis_itens')
+      labelCor.setAttribute('for', itens.cores[i]);
+      labelCor.textContent = itens.cores[i];
+
+      // ENVIAR DADOS DO ELEMENTO PAI E O ITEM CLICADO
+      labelCor.addEventListener('click', () => {
+         navegacaoLabels({ origen: labelCor.closest('.opces_content'), iten_label: labelCor, pagina: 'detalhes' })
+      })
+
+      let inputCor = document.createElement('input');
+      inputCor.classList.add('ocultar')
+      inputCor.type = 'radio';
+      inputCor.name = 'cores';
+      inputCor.value = itens.cores[i]
+      inputCor.id = itens.cores[i]
+
+      inputCor.addEventListener('change', () => {
+         if (inputCor.checked) {
+            coreSelecionada = inputCor.value
+         }
+      })
+
+      if (labelCor.textContent == itens.cores[0] && inputCor.value == itens.cores[0]) {
+         inputCor.checked = true
+         labelCor.classList.add('label_activo')
+      }
+
+      if (inputCor.checked == true) {
+         coreSelecionada = inputCor.value
+
+      }
+
+      // ORDEM
+      opcoesCores.appendChild(labelCor);
+      opcoesCores.appendChild(inputCor);
+   }
+
+   // =========================
+   // TAMANHO
+   // =========================
+
+   const opcoesTamanho = document.createElement('div');
+   opcoesTamanho.classList.add('opces_content', 'tamanho');
+
+   for (let i = 0; i < itens.tamanho.length; i++) {
+
+      let labelTamanho = document.createElement('label');
+      labelTamanho.classList.add('labeis_itens')
+      labelTamanho.setAttribute('for', itens.tamanho[i]);
+      labelTamanho.textContent = itens.tamanho[i];
+
+      // ENVIAR DADOS DO ELEMENTO PAI E O ITEM CLICADO
+      labelTamanho.addEventListener('click', () => {
+         navegacaoLabels({ origen: labelTamanho.closest('.opces_content'), iten_label: labelTamanho, pagina: 'detalhes' })
+      })
+
+      let inputTamanho = document.createElement('input');
+      inputTamanho.classList.add('ocultar')
+      inputTamanho.type = 'radio';
+      inputTamanho.name = 'tamanhos';
+      inputTamanho.value = itens.tamanho[i]
+      inputTamanho.id = itens.tamanho[i];
+
+      // EVENTO
+      inputTamanho.addEventListener('change', () => {
+         if (inputTamanho.checked) {
+            tamanhoSelecionado = inputTamanho.value
+         }
+      })
+
+      // ADICIONAR CLASS LABEL ACTIVO
+      if (labelTamanho.textContent == itens.tamanho[0] && inputTamanho.value == itens.tamanho[0]) {
+         inputTamanho.checked = true
+         labelTamanho.classList.add('label_activo')
+      }
+
+      // VALOR NATIVO
+      if (inputTamanho.checked == true) {
+         tamanhoSelecionado = inputTamanho.value
+      }
+
+      // ORDEM
+      opcoesTamanho.appendChild(labelTamanho);
+      opcoesTamanho.appendChild(inputTamanho);
+   }
+
+
+
+   // =========================
+   // ADICIONAR AO CONTAINER
+   // =========================
+
+   containerOpcoes.appendChild(opcoesCores);
+   containerOpcoes.appendChild(opcoesTamanho);
+
+   return containerOpcoes;
 }

@@ -49,9 +49,15 @@ export function sugestoesPesquisa({ pagina }) {
    pesuisar.classList.add('pesquisar')
 
    // ICONE DE PESQUISA
-   let icone = document.createElement('span')
-   icone.classList.add('material-symbols-outlined')
-   icone.textContent = 'search'
+   let icone = document.createElement('img')
+   icone.classList.add('pesquisa_svgs')
+   if(pagina == 'index'){
+      icone.src = 'svgs/search.svg'
+   }
+
+   if( pagina == 'pesquisa' || pagina == 'categoria'){
+      icone.src = '../svgs/search.svg'
+   }
 
    //  =============================
    // ORDEM EXACTA 

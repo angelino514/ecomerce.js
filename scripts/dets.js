@@ -17,7 +17,7 @@ let pagina = parametros.get('pagina')
 
 if (id != null) {
    const main = document.querySelector('main')
-   if (main) {
+   if (main) { 
       main.appendChild(detalhesProduto({id :  Number(id) , pagina : paginaActual}))
    }
 }

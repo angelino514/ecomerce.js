@@ -1,5 +1,7 @@
+import { caminhosPaginasNavbar } from "../modulos/caminhosPaginas.js";
 
-export function componenteNavbarMobile({pagina}) {
+
+export function componenteNavbarMobile({ pagina }) {
 
    // NAV
    let nav = document.createElement('nav');
@@ -15,9 +17,13 @@ export function componenteNavbarMobile({pagina}) {
    homeBtn.classList.add('link_mobile', 'evento');
    homeBtn.dataset.nome = 'index';
 
-   let homeIcon = document.createElement('span');
-   homeIcon.classList.add('material-symbols-outlined');
-   homeIcon.textContent = 'home';
+   // EVENTO
+   homeBtn.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: homeBtn.dataset.nome })
+   })
+
+   let homeIcon = document.createElement('img');
+   homeIcon.classList.add('svgs')
 
    let homeText = document.createElement('span');
    homeText.classList.add('text_span_link');
@@ -28,9 +34,13 @@ export function componenteNavbarMobile({pagina}) {
    searchBtn.classList.add('link_mobile', 'evento', 'search');
    searchBtn.dataset.nome = 'pesquisa';
 
-   let searchIcon = document.createElement('span');
-   searchIcon.classList.add('material-symbols-outlined');
-   searchIcon.textContent = 'search';
+   // EVENTO
+   searchBtn.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: searchBtn.dataset.nome })
+   })
+
+   let searchIcon = document.createElement('img');
+   searchIcon.classList.add('svgs')
 
    let searchText = document.createElement('span');
    searchText.classList.add('text_span_link');
@@ -39,11 +49,15 @@ export function componenteNavbarMobile({pagina}) {
    // BOTÃO FAVORITO
    let favBtn = document.createElement('button');
    favBtn.classList.add('link_mobile', 'evento');
-   favBtn.dataset.nome = 'favorito';
+   favBtn.dataset.nome = 'favoritos';
 
-   let favIcon = document.createElement('span');
-   favIcon.classList.add('material-symbols-outlined');
-   favIcon.textContent = 'favorite';
+   // EVENTO
+   favBtn.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: favBtn.dataset.nome })
+   })
+
+   let favIcon = document.createElement('img');
+   favIcon.classList.add('svgs')
 
    let favText = document.createElement('span');
    favText.classList.add('text_span_link', 'evento');
@@ -52,19 +66,38 @@ export function componenteNavbarMobile({pagina}) {
    // BOTÃO CARRINHO
    let cartBtn = document.createElement('button');
    cartBtn.classList.add('link_mobile', 'button_relative', 'evento');
-   cartBtn.dataset.nome = 'carrinho';
+   cartBtn.dataset.nome = 'lista';
 
-   let cartIcon = document.createElement('span');
-   cartIcon.classList.add('material-symbols-outlined');
-   cartIcon.textContent = 'shopping_cart';
+   // EVENTO
+   cartBtn.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: cartBtn.dataset.nome })
+   })
+
+   let cartIcon = document.createElement('img');
+   cartIcon.classList.add('svgs')
 
    let cartNumber = document.createElement('span');
-   cartNumber.classList.add('numeros_absulute', 'abslute_mobile');
+   cartNumber.classList.add('numeros_absulute', 'abslute_mobile' , 'numero_carrinho');
    cartNumber.textContent = '0';
 
    let cartText = document.createElement('span');
    cartText.classList.add('text_span_link');
    cartText.textContent = 'carrinho';
+
+   // CAMINHOS DOS SVGS
+   if (pagina == 'index') {
+      homeIcon.src = 'svgs/home.svg'
+      searchIcon.src = 'svgs/search.svg'
+      favIcon.src = 'svgs/favorito.svg'
+      cartIcon.src = 'svgs/cart.svg'
+   }
+
+   if (pagina == 'categoria' || pagina == 'pesquisa' || pagina == 'lista') {
+      homeIcon.src = '../svgs/home.svg'
+      searchIcon.src = '../svgs/search.svg'
+      favIcon.src = '../svgs/favorito.svg'
+      cartIcon.src = '../svgs/cart.svg'
+   }
 
    // ------------------------
    // APPEND (ORDEM CORRETA)
@@ -88,6 +121,7 @@ export function componenteNavbarMobile({pagina}) {
    face.appendChild(cartBtn);
 
    nav.appendChild(face);
+
 
    return nav;
 }

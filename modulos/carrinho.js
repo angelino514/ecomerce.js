@@ -4,6 +4,8 @@ function pegarCarrinho() {
  
 export let carrinho = pegarCarrinho()
 
+
 export function guardarCarrinho(carrinho) {
    localStorage.setItem("carrinho", JSON.stringify(carrinho))
 }
+
