@@ -1,7 +1,8 @@
 
 import { categorias } from "../modulos/categorias.js";
 import { filtarCategorias } from "../modulos/categorias.js";
-
+import { arrowLeftIcon } from "../modulos/icones.js";
+import { arrowRightIcon } from "../modulos/icones.js";
 
 
 // CARROSEL ITENS
@@ -15,9 +16,12 @@ function componenteCarrossel({ pagina }) {
    let btnLeft = document.createElement('button');
    btnLeft.classList.add('buttons_carrossel');
 
+   btnLeft.addEventListener('click', () => {
+      scroolCarrousel().scrollLeft -= scroolCarrousel().querySelector('.itens_carrossel_content').clientWidth * 2
+   })
+
    let iconLeft = document.createElement('span');
-   iconLeft.classList.add('material-symbols-outlined');
-   iconLeft.textContent = 'arrow_left';
+   iconLeft.innerHTML = arrowLeftIcon()
 
    btnLeft.appendChild(iconLeft);
 
@@ -25,9 +29,12 @@ function componenteCarrossel({ pagina }) {
    let btnRight = document.createElement('button');
    btnRight.classList.add('buttons_carrossel', 'rith');
 
+   btnRight.addEventListener('click', () => {
+      scroolCarrousel().scrollLeft += scroolCarrousel().querySelector('.itens_carrossel_content').clientWidth * 2
+   })
+
    let iconRight = document.createElement('span');
-   iconRight.classList.add('material-symbols-outlined');
-   iconRight.textContent = 'arrow_right';
+   iconRight.innerHTML = arrowRightIcon()
 
    btnRight.appendChild(iconRight);
 
@@ -38,7 +45,7 @@ function componenteCarrossel({ pagina }) {
    let carrosselItens = document.createElement('div');
    carrosselItens.classList.add('carrossel_itens');
 
-   
+
 
    categorias().forEach(iten => {
       // BUTTO CARROSSEL
@@ -52,7 +59,7 @@ function componenteCarrossel({ pagina }) {
 
       let img = document.createElement('img');
       img.classList.add('img_category');
-      img.src = '../imgs/' + iten.img
+      img.src = 'imgs/' + iten.img
 
       let text = document.createElement('p');
       text.classList.add('texto_container');
@@ -75,6 +82,10 @@ function componenteCarrossel({ pagina }) {
    return container;
 }
 
+
+function scroolCarrousel() {
+   return document.querySelector('.carrossel')
+}
 
 
 export function componenteMain({ pagina }) {
@@ -111,13 +122,13 @@ export function componenteMain({ pagina }) {
    main.appendChild(containerMain);
 
    if (pagina == 'categoria' || pagina == 'pesquisa' || pagina == 'detalhes'
-       || pagina == 'lista' || pagina == 'favoritos') {
+      || pagina == 'lista' || pagina == 'favoritos') {
       container_benners.classList.add('ocultar')
       carrossel_categoria.classList.add('ocultar')
       main.classList.add('main_activo')
    }
 
-   if( pagina == 'lista' || pagina == 'favoritos') {
+   if (pagina == 'lista' || pagina == 'favoritos') {
       containerMain.classList.add('grid_list')
    }
 

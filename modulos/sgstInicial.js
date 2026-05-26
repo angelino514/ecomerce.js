@@ -34,6 +34,4 @@ export function sugestoesIniciais({ itens, pagina }) {
       document.querySelector('.container_main').appendChild(container_in)
    })
 
-
-
 }

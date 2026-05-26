@@ -7,6 +7,7 @@ import { itensVendas } from "./bancoDados.js";
 import { navegacaoNavbar } from "./modulos/evento.js";
 import { actualizarEmTempoReal } from "./componentes/informacoes.js";
 import { caminhoPaginaDetalhes } from "./modulos/caminhosPaginas.js";
+import { carrinho } from "./modulos/carrinho.js";
 
 const paginaActual = 'index'
 const root = document.querySelector('.root')
@@ -23,26 +24,36 @@ if (root) {
 const container_main = document.querySelector('.container_main')
 if (container_main) {
     criarProdutos({ produtos: itensVendas, pagina: paginaActual })
+
+
+    const promocoes = itensVendas.filter(p => p.promocao == true)
+    const carrousel_promo = document.querySelectorAll('.carrousel_promo')
+    for (let i = 0; i < promocoes.length; i++) {
+
+        const img_promo = carrousel_promo[i].querySelector('.img_promo')
+        img_promo.src = 'imgs/' + promocoes[i].img
+        img_promo.alt = promocoes[i].iten
+
+        carrousel_promo[i].querySelector('.title_promo').textContent = promocoes[i].iten
+        carrousel_promo[i].querySelector('.txt_promo').textContent = ` Desconto de ${5}%`
+
+
+        const btn_promo = carrousel_promo[i].querySelector('.btn_promo')
+        btn_promo.dataset.id = promocoes[i].id
+        btn_promo.textContent = 'Comprar Agora'
+
+        // EVENTO DETALHES 
+        btn_promo.addEventListener('click', () => {
+            caminhoPaginaDetalhes({ dados: btn_promo.dataset.id, pagina: paginaActual })
+        })
+    }
+
 }
 
-const promocoes = itensVendas.filter(p => p.promocao == true)
-const carrousel_promo = document.querySelectorAll('.carrousel_promo')
-for (let i = 0; i < promocoes.length; i++) {
-
-    const img_promo = carrousel_promo[i].querySelector('.img_promo')
-    img_promo.src = 'imgs/' + promocoes[i].img
-    img_promo.alt = promocoes[i].iten
-
-    carrousel_promo[i].querySelector('.title_promo').textContent = promocoes[i].iten
-    carrousel_promo[i].querySelector('.txt_promo').textContent = ` Desconto de ${5}%`
-
-
-    const btn_promo = carrousel_promo[i].querySelector('.btn_promo')
-    btn_promo.dataset.id = promocoes[i].id
-    btn_promo.textContent = 'Comprar Agora'
-
-    // EVENTO DETALHES 
-    btn_promo.addEventListener('click', () => {
-        caminhoPaginaDetalhes({ dados: btn_promo.dataset.id, pagina: paginaActual })
+export function actualizarNumerosCarrinho(numero) {
+    const numero_carrinho = document.querySelectorAll('.numero_carrinho')
+    numero_carrinho.forEach(nc => {
+        nc.textContent = numero
     })
 }
+actualizarNumerosCarrinho(carrinho.length)

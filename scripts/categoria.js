@@ -37,7 +37,6 @@ else {
 }
 
 export function resultadoCategoria({ valor, pagina }) {
-
    const filtroCategoria = itensVendas.filter(p => p.categoria == valor)
 
    const container_main = document.querySelector('.container_main')

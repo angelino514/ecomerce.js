@@ -4,6 +4,8 @@ import { componenteMain } from "../componentes/main.js"
 import { componenteFooter } from "../componentes/footer.js"
 import { criarItemCarrinho } from "../componentes/informacoes.js"
 import { navegacaoNavbar } from "../modulos/evento.js"
+import { actualizarNumerosCarrinho } from "../index.js"
+import { carrinho } from "../modulos/carrinho.js"
 
 
 
@@ -14,10 +16,11 @@ const favoritos = document.querySelector('.favoritos')
 if (favoritos) {
    favoritos.appendChild(componentesHeader({ pagina: paginaActual }))
    favoritos.appendChild(componenteNavbarMobile({ pagina: paginaActual }))
-   favoritos.appendChild(componenteMain({pagina : paginaActual}))
+   favoritos.appendChild(componenteMain({ pagina: paginaActual }))
    favoritos.appendChild(componenteFooter())
 
-    navegacaoNavbar({ pagina: paginaActual })
+   navegacaoNavbar({ pagina: paginaActual })
+   actualizarNumerosCarrinho(carrinho.length)
 }
 
 

@@ -1,4 +1,8 @@
 import { caminhosPaginasNavbar } from "../modulos/caminhosPaginas.js";
+import { homeLockIcon } from "../modulos/icones.js";
+import { searchIconI } from "../modulos/icones.js";
+import { heartIcon } from "../modulos/icones.js";
+import { cartIconI } from "../modulos/icones.js";
 
 
 export function componenteNavbarMobile({ pagina }) {
@@ -22,8 +26,10 @@ export function componenteNavbarMobile({ pagina }) {
       caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: homeBtn.dataset.nome })
    })
 
-   let homeIcon = document.createElement('img');
+   let homeIcon = document.createElement('span');
+   homeIcon.innerHTML = homeLockIcon()
    homeIcon.classList.add('svgs')
+
 
    let homeText = document.createElement('span');
    homeText.classList.add('text_span_link');
@@ -39,7 +45,8 @@ export function componenteNavbarMobile({ pagina }) {
       caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: searchBtn.dataset.nome })
    })
 
-   let searchIcon = document.createElement('img');
+   let searchIcon = document.createElement('span');
+   searchIcon.innerHTML = searchIconI()
    searchIcon.classList.add('svgs')
 
    let searchText = document.createElement('span');
@@ -56,7 +63,8 @@ export function componenteNavbarMobile({ pagina }) {
       caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: favBtn.dataset.nome })
    })
 
-   let favIcon = document.createElement('img');
+   let favIcon = document.createElement('span');
+   favIcon.innerHTML = heartIcon()
    favIcon.classList.add('svgs')
 
    let favText = document.createElement('span');
@@ -73,31 +81,19 @@ export function componenteNavbarMobile({ pagina }) {
       caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: cartBtn.dataset.nome })
    })
 
-   let cartIcon = document.createElement('img');
+   let cartIcon = document.createElement('span');
+   cartIcon.innerHTML = cartIconI()
    cartIcon.classList.add('svgs')
 
    let cartNumber = document.createElement('span');
-   cartNumber.classList.add('numeros_absulute', 'abslute_mobile' , 'numero_carrinho');
+   cartNumber.classList.add('numeros_absulute', 'abslute_mobile', 'numero_carrinho');
+   cartNumber.dataset.numero = 'numero_itens'
    cartNumber.textContent = '0';
 
    let cartText = document.createElement('span');
    cartText.classList.add('text_span_link');
    cartText.textContent = 'carrinho';
 
-   // CAMINHOS DOS SVGS
-   if (pagina == 'index') {
-      homeIcon.src = 'svgs/home.svg'
-      searchIcon.src = 'svgs/search.svg'
-      favIcon.src = 'svgs/favorito.svg'
-      cartIcon.src = 'svgs/cart.svg'
-   }
-
-   if (pagina == 'categoria' || pagina == 'pesquisa' || pagina == 'lista') {
-      homeIcon.src = '../svgs/home.svg'
-      searchIcon.src = '../svgs/search.svg'
-      favIcon.src = '../svgs/favorito.svg'
-      cartIcon.src = '../svgs/cart.svg'
-   }
 
    // ------------------------
    // APPEND (ORDEM CORRETA)

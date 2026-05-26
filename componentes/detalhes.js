@@ -3,6 +3,10 @@ import { navegacaoLabels } from "../modulos/evento.js"
 import { addProdutosCompra } from "../modulos/addproduto.js"
 import { carrinho } from "../modulos/carrinho.js"
 import { favoritos } from "../modulos/favoritos.js"
+import { arrowLeftIcon } from "../modulos/icones.js"
+import { arrowRightIcon } from "../modulos/icones.js"
+import { heartIcon } from "../modulos/icones.js"
+import { actualizarNumerosCarrinho } from "../index.js"
 
 // ===============================
 // DADOS DA COMPRA 
@@ -41,9 +45,12 @@ export function detalhesProduto({ id, pagina }) {
    const btnLeft = document.createElement('button')
    btnLeft.classList.add('left', 'button_detalhes')
 
+   btnLeft.addEventListener('click', () => {
+      scroolImgsDetalhes().scrollLeft -= scroolImgsDetalhes().querySelector('.scrroll_container_imgs').clientWidth
+   })
+
    const iconLeft = document.createElement('span')
-   iconLeft.classList.add('material-symbols-outlined')
-   iconLeft.textContent = 'chevron_left'
+   iconLeft.innerHTML = arrowLeftIcon()
 
    btnLeft.appendChild(iconLeft)
 
@@ -51,9 +58,12 @@ export function detalhesProduto({ id, pagina }) {
    const btnRight = document.createElement('button')
    btnRight.classList.add('riht', 'button_detalhes')
 
+   btnRight.addEventListener('click', () => {
+      scroolImgsDetalhes().scrollLeft += scroolImgsDetalhes().querySelector('.scrroll_container_imgs').clientWidth
+   })
+
    const iconRight = document.createElement('span')
-   iconRight.classList.add('material-symbols-outlined')
-   iconRight.textContent = 'chevron_right'
+   iconRight.innerHTML = arrowRightIcon()
 
    btnRight.appendChild(iconRight)
 
@@ -133,8 +143,8 @@ export function detalhesProduto({ id, pagina }) {
       'btn_favorito',
    )
 
-   btnFavorito.addEventListener('click' , ()=>{
-       addProdutosCompra({
+   btnFavorito.addEventListener('click', () => {
+      addProdutosCompra({
          id: id,
          cor: coreSelecionada,
          tamanho: tamanhoSelecionado,
@@ -143,7 +153,7 @@ export function detalhesProduto({ id, pagina }) {
    })
 
    const svgFavorito = document.createElement('img')
-   svgFavorito.src = '../svgs/favorito.svg'
+   svgFavorito.innerHTML = heartIcon()
    svgFavorito.classList.add('svgs')
 
    btnFavorito.appendChild(svgFavorito)
@@ -186,6 +196,9 @@ export function detalhesProduto({ id, pagina }) {
          tamanho: tamanhoSelecionado,
          accao: btnCarrinho.dataset.accao
       })
+
+      // ACTULIZAR NUMEROS DO CARRINHO 
+      actualizarNumerosCarrinho(carrinho.length)
    })
 
    // ADICIONAR BOTÕES
@@ -220,6 +233,9 @@ export function detalhesProduto({ id, pagina }) {
 }
 
 
+function scroolImgsDetalhes() {
+   return document.querySelector('.container_carrosel_imgs')
+}
 
 function criarOpcoesProduto({ itens, pagina }) {
 

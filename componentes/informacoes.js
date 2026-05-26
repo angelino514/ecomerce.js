@@ -1,8 +1,10 @@
 import { itensVendas } from "../bancoDados.js";
+import { actualizarNumerosCarrinho } from "../index.js";
 import { carrinho } from "../modulos/carrinho.js";
 import { guardarCarrinho } from "../modulos/carrinho.js";
 import { favoritos } from "../modulos/favoritos.js";
 import { guardarFavoritos } from "../modulos/favoritos.js";
+import { deleteIcon } from "../modulos/icones.js";
 
 
 // ELEMENTOS DINAMICOS DA LISTA
@@ -119,7 +121,7 @@ export function criarItemCarrinho({ pagina }) {
       const contLtBtns = document.createElement('div')
       contLtBtns.classList.add('cont_lt_btns')
 
-      if(pagina == 'favoritos'){
+      if (pagina == 'favoritos') {
          contLtBtns.classList.add('espaco_itens')
       }
 
@@ -136,7 +138,21 @@ export function criarItemCarrinho({ pagina }) {
 
 
       const btnRemover = document.createElement('button')
-      btnRemover.textContent = 'Remover'
+      btnRemover.innerHTML = deleteIcon()
+
+      // EVENTO REMOVER ITEN DA LISTA
+      btnRemover.addEventListener('click', () => {
+         removeItensLista({
+            id: dados.dataset.id,
+            cor: dados.dataset.cor,
+            tamanho: dados.dataset.tamanho,
+            pagina: pagina,
+            origem: btnRemover.closest('.cont_lt_btns').closest('.cont_inf_dt').closest('.cont_lt_face').closest('.cont_list_pr')
+         })
+
+          actualizarEmTempoReal()
+          actualizarNumerosCarrinho(carrinho.length)
+      })
 
       contLtBtns.appendChild(btnRemover)
 
@@ -158,10 +174,33 @@ export function criarItemCarrinho({ pagina }) {
    return container_list
 }
 
+
+
+// REMOVER ITENS DA LISTA 
+function removeItensLista({ id, cor, tamanho, pagina, origem }) {
+
+   let itenExcluido = pagina == 'lista'
+      ? carrinho
+      : favoritos
+
+   let indice = itenExcluido.findIndex(p =>
+      p.id == id &&
+      p.cor == cor &&
+      p.tamanho == tamanho
+   )
+
+   if (indice !== -1) {
+      itenExcluido.splice(indice, 1)
+
+      origem.remove()
+   }
+
+   guardarCarrinho(carrinho)
+   guardarFavoritos(favoritos)
+}
+
 // CONTROLO DE QUANTIDADE ( EVENTOS ENCREMENTAR && DECREMENTAR )
 function criarControleQuantidade({ id, cor, tamanho, pagina }) {
-
-   // CARRINHO
 
    let lista = pagina == 'lista'
       ? carrinho
@@ -239,6 +278,7 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
 
       // ACTUALIZAR EM TEMPO REAL 
       actualizarEmTempoReal()
+      actualizarNumerosCarrinho(carrinho.length)
    })
 
    // BOTÃO -
@@ -255,6 +295,7 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
 
       // ACTUALIZAR EM TEMPO REAL 
       actualizarEmTempoReal()
+      actualizarNumerosCarrinho(carrinho.length)
    })
 
    // ORDEM (IMPORTANTE)
@@ -412,7 +453,6 @@ export function criarResumoPedido() {
 }
 
 export function actualizarEmTempoReal() {
-
    let subtotal = 0
    let spn_subtotal = document.querySelector('.subtotal')
    if (spn_subtotal) {
@@ -421,12 +461,4 @@ export function actualizarEmTempoReal() {
          spn_subtotal.textContent = `${subtotal}Kz`
       })
    }
-
-   let numero_carrinho = document.querySelectorAll('.numero_carrinho')
-
-   numero_carrinho.forEach(nc => {
-      if (nc) {
-         nc.textContent = carrinho.length
-      }
-   })
 }

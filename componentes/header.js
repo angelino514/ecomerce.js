@@ -1,6 +1,10 @@
 import { categorias } from "../modulos/categorias.js";
 import { sugestoesPesquisa } from "./sugestoesPesquisa.js";
 import { filtarCategorias } from "../modulos/categorias.js";
+import { cartIconI } from "../modulos/icones.js";
+import { heartIcon } from "../modulos/icones.js";
+import { arrowBackIcon } from "../modulos/icones.js";
+import { caminhosPaginasNavbar } from "../modulos/caminhosPaginas.js";
 
 export function componentesHeader({ pagina }) {
    // HEADER
@@ -22,8 +26,7 @@ export function componentesHeader({ pagina }) {
    back_button.classList.add('nav_button', 'button_list', 'evento')
 
    let back_icon = document.createElement('span')
-   back_icon.classList.add('material-symbols-outlined')
-   back_icon.textContent = 'arrow_back'
+   back_button.innerHTML = arrowBackIcon()
    back_button.addEventListener('click', () => {
       history.back()
    })
@@ -46,28 +49,28 @@ export function componentesHeader({ pagina }) {
    favorite.classList.add('button_list', 'evento');
    favorite.dataset.nome = 'favorito';
 
-   let iconeFavorito = document.createElement('img');
+   let iconeFavorito = document.createElement('span');
+   iconeFavorito.innerHTML = heartIcon()
    iconeFavorito.classList.add('svgs')
 
    // CARRINHO
    let carrinho = document.createElement('button');
    carrinho.classList.add('button_list', 'button_relative', 'evento');
    carrinho.dataset.nome = 'carrinho';
+   carrinho.dataset.botao = 'lista'
 
-   let carrinhoIcone = document.createElement('img');
+   carrinho.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: carrinho.dataset.botao })
+   })
+
+   let carrinhoIcone = document.createElement('span');
+   carrinhoIcone.innerHTML = cartIconI()
    carrinhoIcone.classList.add('svgs')
-   if (pagina == 'index') {
-      carrinhoIcone.src = 'svgs/cart.svg'
-      iconeFavorito.src = 'svgs/favorito.svg'
-   }
 
-   if (pagina == 'categoria' || pagina == 'pesquisa') {
-      iconeFavorito.src = '../svgs/favorito.svg'
-      carrinhoIcone.src = '../svgs/cart.svg'
-   }
 
    let numero_itens = document.createElement('span');
    numero_itens.classList.add('numeros_absulute', 'numero_carrinho');
+   numero_itens.dataset.numero = 'numero_itens'
    numero_itens.textContent = '0';
 
 

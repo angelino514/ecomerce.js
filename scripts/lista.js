@@ -8,6 +8,7 @@ import { infoCarrinho } from "../componentes/informacoes.js";
 import { criarResumoPedido } from "../componentes/informacoes.js";
 import { actualizarEmTempoReal } from "../componentes/informacoes.js";
 import { navegacaoNavbar } from "../modulos/evento.js";
+import { actualizarNumerosCarrinho } from "../index.js";
 
 
 const paginaActual = 'lista'
@@ -17,7 +18,8 @@ if (list) {
    list.appendChild(componenteNavbarMobile({ pagina: paginaActual }))
    list.appendChild(componenteMain({ pagina: paginaActual }))
 
-    navegacaoNavbar({ pagina: paginaActual })
+   navegacaoNavbar({ pagina: paginaActual })
+   actualizarNumerosCarrinho(carrinho.length)
 }
 
 
@@ -26,7 +28,7 @@ if (list) {
 const containerMain = document.querySelector('.container_main')
 if (containerMain) {
    containerMain.appendChild(infoCarrinho())
-   containerMain.appendChild(criarItemCarrinho({pagina : paginaActual}))
+   containerMain.appendChild(criarItemCarrinho({ pagina: paginaActual }))
    containerMain.appendChild(criarResumoPedido())
    actualizarEmTempoReal()
 }

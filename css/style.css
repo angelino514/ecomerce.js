@@ -29,8 +29,11 @@ body {
    position: absolute;
    transform: translateY(-10px) translateX(10px);
    font-weight: 500;
-   font-size: 0.9rem;
-   color: red;
+   font-size: 0.8rem;
+   color: #fff;
+   background-color: var(--color-add);
+   padding: 0.2rem !important;
+   border-radius: 50px;
 }
 
 input {
@@ -46,9 +49,8 @@ input {
 
 
 .svgs {
-   width: 25px;
-   object-fit: contain;
-   aspect-ratio: 1/1;
+   width: 30px;
+   height: 30px;
 }
 
 /* ===================================
@@ -480,6 +482,7 @@ CARROSSEL SCROL
    width: 100%;
    background: #1e1e1e;
    color: #fff;
+   padding: 2rem 0 !important;
 
 }
 
@@ -490,14 +493,15 @@ CARROSSEL SCROL
    gap: 20px;
 }
 
+
+
 .footer-section {
    flex: 1;
    min-width: 200px;
 }
 
 .footer-section h3 {
-   color: #00aaff;
-   margin-bottom: 10px !important;
+   color: var(--color-add);
 }
 
 .footer-section ul {
@@ -505,13 +509,12 @@ CARROSSEL SCROL
 }
 
 .footer-section ul li {
-   margin-bottom: 8px;
    cursor: pointer;
    transition: 0.3s;
 }
 
 .footer-section ul li:hover {
-   color: #00aaff;
+   color: var(--color-add);
 }
 
 .footer-bottom {
@@ -534,7 +537,7 @@ CARROSSEL SCROL
 
 .container_detalhes>.face {
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-template-columns: 1fr 1.5fr;
    gap: 1rem;
 }
 
@@ -585,6 +588,7 @@ CARROSSEL SCROL
    display: flex;
    flex-direction: column;
    padding: 2rem !important;
+   max-width: 60%;
 }
 
 .nome_iten {
@@ -676,6 +680,10 @@ CARROSSEL SCROL
    font-size: 0.9rem;
    font-weight: 500;
    color: #000;
+}
+
+.deleteIcon {
+   color: red;
 }
 
 /* CONTAINER OPCOES  */
@@ -987,6 +995,13 @@ RESPONSIVIDADE
       grid-template-columns: 1fr;
    }
 
+   .content_detalhes {
+      max-width: none;
+   }
+
+   .scrroll_container_imgs {
+      width: 50%;
+   }
 
    /* 
       ================================================
@@ -1057,12 +1072,12 @@ RESPONSIVIDADE
       padding: 0.5rem !important;
    }
 
-   .link_activo {
-      background-color: var(--color-add);
+   .link_activo .icon {
+      color: var(--color-add);
    }
 
    .link_activo .text_span_link {
-      color: #fff;
+      color: var(--color-add);
    }
 
    .text_span_link {
@@ -1099,7 +1114,7 @@ RESPONSIVIDADE
 
    .btn_promo {
       padding: 0.5rem 1rem !important;
-      margin: 0.5rem  0 !important;
+      margin: 0.5rem 0 !important;
       font-size: 0.9rem;
    }
 
@@ -1107,13 +1122,18 @@ RESPONSIVIDADE
        CONFIGURACOES DA PAGINA DE DETALHES
       =====================================
    */
-
    .scrroll_container_imgs {
       width: 100%;
    }
 
    .content_detalhes {
       padding: 0 !important;
+   }
+
+   .carrossel_imgs {
+      position: relative;
+      height: 50vh;
+      max-height: 450px;
    }
 
 
@@ -1131,9 +1151,8 @@ RESPONSIVIDADE
 
    .container_btns_accao>.face {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 0.5fr 2fr 2fr;
       align-items: center;
-      gap: 0.5rem;
    }
 
    .buttons_accao {
@@ -1161,10 +1180,4 @@ RESPONSIVIDADE
    .img_inf_itn {
       max-height: 250px;
    }
-
-   /* 
-      ================================================
-       CONFIGURACAO DA PAGAINA LISA
-      ================================================
-    */
 }
