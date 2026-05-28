@@ -52,19 +52,24 @@ export function componentesHeader({ pagina }) {
    let favorite = document.createElement('button');
    favorite.classList.add('button_list', 'evento');
    favorite.dataset.nome = 'favorito';
+   favorite.dataset.botao = 'favoritos'
+
+   favorite.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: favorite.dataset.botao })
+   })
 
    let iconeFavorito = document.createElement('span');
    iconeFavorito.innerHTML = heartIcon()
    iconeFavorito.classList.add('svgs')
 
    // CARRINHO
-   let carrinho = document.createElement('button');
-   carrinho.classList.add('button_list', 'button_relative', 'evento');
-   carrinho.dataset.nome = 'carrinho';
-   carrinho.dataset.botao = 'lista'
+   let btncarrinho = document.createElement('button');
+   btncarrinho.classList.add('button_list', 'button_relative', 'evento');
+   btncarrinho.dataset.nome = 'carrinho';
+   btncarrinho.dataset.botao = 'lista'
 
-   carrinho.addEventListener('click', () => {
-      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: carrinho.dataset.botao })
+   btncarrinho.addEventListener('click', () => {
+      caminhosPaginasNavbar({ accao: pagina, pagina: pagina, botao: btncarrinho.dataset.botao })
    })
 
    let carrinhoIcone = document.createElement('span');
@@ -102,7 +107,7 @@ export function componentesHeader({ pagina }) {
    // SE A PAGINA FOR CARRINHO OU PESQUISA
    if (pagina == 'carrinho' || pagina == 'pesquisa'
       || pagina == 'categoria' || pagina == 'detalhes'
-      || pagina == 'lista' || pagina == 'favoritos'  || pagina == 'finalizar') {
+      || pagina == 'lista' || pagina == 'favoritos' || pagina == 'finalizar') {
       logo.appendChild(back_button)
       back_button.appendChild(back_icon)
    }
@@ -132,7 +137,7 @@ export function componentesHeader({ pagina }) {
    //   SE A PAGINA FOR DETALHES
    if (pagina == 'detalhes') {
       favorite.classList.add('ocultar')
-      carrinho.classList.add('ocultar')
+      btncarrinho.classList.add('ocultar')
       container_buttons_list.classList.add('ocultar')
       container_input.classList.add('ocultar')
       navbar_header.classList.add('ocultar')
@@ -143,7 +148,7 @@ export function componentesHeader({ pagina }) {
       container_input.classList.add('ocultar')
       container_buttons_list.classList.add('ocultar')
       favorite.classList.add('ocultar')
-      carrinho.classList.add('ocultar')
+      btncarrinho.classList.add('ocultar')
       navbar_header.classList.add('ocultar')
    }
 
@@ -151,12 +156,12 @@ export function componentesHeader({ pagina }) {
    favorite.appendChild(iconeFavorito);
 
    // carrinho
-   carrinho.appendChild(carrinhoIcone);
-   carrinho.appendChild(numero_itens);
+   btncarrinho.appendChild(carrinhoIcone);
+   btncarrinho.appendChild(numero_itens);
 
    // container buttons
    container_buttons_list.appendChild(favorite);
-   container_buttons_list.appendChild(carrinho);
+   container_buttons_list.appendChild(btncarrinho);
 
    // section face
    face.appendChild(logo);

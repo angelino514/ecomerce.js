@@ -8,18 +8,16 @@ import { menuAltIcon } from "../modulos/icones.js";
 import { actualizarNumeroItens } from "../modulos/actualizar.js";
 import { opcesLista } from "../modulos/caminhosPaginas.js";
 import { closeIcon } from "../modulos/icones.js";
+import { shoppingCartOffIcon } from "../modulos/icones.js";
+
 
 // ELEMENTOS DINAMICOS DA LISTA
 export function criarItemCarrinho({ pagina }) {
-
 
    const div_principal = document.createElement('div')
    div_principal.classList.add('div_principal')
 
    div_principal.appendChild(infoCarrinho({ pagina: pagina }))
-
-   const container_list = document.createElement('div')
-   container_list.classList.add('container_list')
 
    const qualquer = []
 
@@ -38,152 +36,197 @@ export function criarItemCarrinho({ pagina }) {
       })
    }
 
-   qualquer.forEach(iten_lista => {
+   if (qualquer.length !== 0) {
+      const container_list = document.createElement('div')
+      container_list.classList.add('container_list')
 
-      let dcs = itensVendas.find(p => p.id == iten_lista.id)
-      if (!dcs) return
+      qualquer.forEach(iten_lista => {
 
-      // CONTAINER PRINCIPAL
-      const contListPr = document.createElement('div')
-      contListPr.classList.add('cont_list_pr')
-      contListPr.dataset.id = iten_lista.id
-      contListPr.dataset.tamanho = iten_lista.tamanho
-      contListPr.dataset.cor = iten_lista.cor
+         let dcs = itensVendas.find(p => p.id == iten_lista.id)
+         if (!dcs) return
 
-      const cont_lt_face = document.createElement('div')
-      cont_lt_face.classList.add('cont_lt_face', 'face')
+         // CONTAINER PRINCIPAL
+         const contListPr = document.createElement('div')
+         contListPr.classList.add('cont_list_pr')
+         contListPr.dataset.id = iten_lista.id
+         contListPr.dataset.tamanho = iten_lista.tamanho
+         contListPr.dataset.cor = iten_lista.cor
 
-      // ===========================
-      // CONTAINER DA IMAGEM
-      // ===========================
-      const contLtImg = document.createElement('div')
-      contLtImg.classList.add('cont_lt_img')
+         const cont_lt_face = document.createElement('div')
+         cont_lt_face.classList.add('cont_lt_face', 'face')
 
-      const img = document.createElement('img')
-      img.classList.add('img_lt')
-      img.src = '../imgs/' + dcs.img
-      img.alt = dcs.iten
+         // ===========================
+         // CONTAINER DA IMAGEM
+         // ===========================
+         const contLtImg = document.createElement('div')
+         contLtImg.classList.add('cont_lt_img')
 
-      contLtImg.appendChild(img)
+         const img = document.createElement('img')
+         img.classList.add('img_lt')
+         img.src = '../imgs/' + dcs.img
+         img.alt = dcs.iten
 
-
-
-      // ===========================
-      // CONTAINER INFORMACOES
-      // ===========================
-      const contInfDt = document.createElement('div')
-      contInfDt.classList.add('cont_inf_dt')
-
-
-      // CONTAINER ITENS
-      const contLtItns = document.createElement('div')
-      contLtItns.classList.add('cont_lt_itns')
-
-
-      // INFORMACOES DO ITEM
-      const itenDtLt = document.createElement('div')
-      itenDtLt.classList.add('iten_dt_lt')
-
-
-      // NOME
-      const nome = document.createElement('h2')
-      nome.classList.add('n_itn_lt')
-      nome.textContent = dcs.iten
-
-
-      // DESCRICAO
-      const descricao = document.createElement('p')
-      descricao.classList.add('txt_itn_lt')
-
-
-      descricao.textContent = dcs.itenDesc
-
-
-      // COR E TAMANHO
-      const opcoes = document.createElement('div')
-      opcoes.classList.add('itn_esc_op')
-
-      opcoes.textContent = `Cor :${iten_lista.cor} Tamanho :${iten_lista.tamanho}`
-
-
-      // ADICIONAR INFORMACOES
-      itenDtLt.appendChild(nome)
-      itenDtLt.appendChild(descricao)
-      itenDtLt.appendChild(opcoes)
-
-
-      // TOTAL
-      const total = document.createElement('span')
-      total.classList.add('sp_lt_tt')
-      total.textContent = `${dcs.preco * iten_lista.quantidade}Kz`
-
-
-      // ADICIONAR NO CONTAINER DOS ITENS
-      contLtItns.appendChild(itenDtLt)
-      contLtItns.appendChild(total)
-
-
-      // ===========================
-      // BOTOES
-      // ===========================
-      const contLtBtns = document.createElement('div')
-      contLtBtns.classList.add('cont_lt_btns')
-
-      if (pagina == 'favoritos') {
-         contLtBtns.classList.add('espaco_itens')
-      }
-
-      // DADOS DO ELEMENTO PAI
-      let dados = contListPr
-
-      contLtBtns.appendChild(criarControleQuantidade({
-         id: dados.dataset.id,
-         cor: dados.dataset.cor,
-         tamanho: dados.dataset.tamanho,
-         pagina: pagina
-      }))
+         contLtImg.appendChild(img)
 
 
 
-      const btnRemover = document.createElement('button')
-      btnRemover.innerHTML = deleteIcon()
+         // ===========================
+         // CONTAINER INFORMACOES
+         // ===========================
+         const contInfDt = document.createElement('div')
+         contInfDt.classList.add('cont_inf_dt')
 
-      // EVENTO REMOVER ITEN DA LISTA
-      btnRemover.addEventListener('click', () => {
-         removeItensLista({
+
+         // CONTAINER ITENS
+         const contLtItns = document.createElement('div')
+         contLtItns.classList.add('cont_lt_itns')
+
+
+         // INFORMACOES DO ITEM
+         const itenDtLt = document.createElement('div')
+         itenDtLt.classList.add('iten_dt_lt')
+
+
+         // NOME
+         const nome = document.createElement('h2')
+         nome.classList.add('n_itn_lt')
+         nome.textContent = dcs.iten
+
+
+         // DESCRICAO
+         const descricao = document.createElement('p')
+         descricao.classList.add('txt_itn_lt')
+
+
+         descricao.textContent = dcs.itenDesc
+
+
+         // COR E TAMANHO
+         const opcoes = document.createElement('div')
+         opcoes.classList.add('itn_esc_op')
+
+         opcoes.textContent = `Cor :${iten_lista.cor} Tamanho :${iten_lista.tamanho}`
+
+
+         // ADICIONAR INFORMACOES
+         itenDtLt.appendChild(nome)
+         itenDtLt.appendChild(descricao)
+         itenDtLt.appendChild(opcoes)
+
+
+         // TOTAL
+         const total = document.createElement('span')
+         total.classList.add('sp_lt_tt')
+         total.textContent = `${dcs.preco * iten_lista.quantidade}Kz`
+
+
+         // ADICIONAR NO CONTAINER DOS ITENS
+         contLtItns.appendChild(itenDtLt)
+         contLtItns.appendChild(total)
+
+
+         // ===========================
+         // BOTOES
+         // ===========================
+         const contLtBtns = document.createElement('div')
+         contLtBtns.classList.add('cont_lt_btns')
+
+         if (pagina == 'favoritos') {
+            contLtBtns.classList.add('espaco_itens')
+         }
+
+         // DADOS DO ELEMENTO PAI
+         let dados = contListPr
+
+         contLtBtns.appendChild(criarControleQuantidade({
             id: dados.dataset.id,
             cor: dados.dataset.cor,
             tamanho: dados.dataset.tamanho,
-            pagina: pagina,
-            origem: btnRemover.closest('.cont_lt_btns').closest('.cont_inf_dt').closest('.cont_lt_face').closest('.cont_list_pr')
+            pagina: pagina
+         }))
+
+
+
+         const btnRemover = document.createElement('button')
+         btnRemover.innerHTML = deleteIcon()
+
+         // EVENTO REMOVER ITEN DA LISTA
+         btnRemover.addEventListener('click', () => {
+            removeItensLista({
+               id: dados.dataset.id,
+               cor: dados.dataset.cor,
+               tamanho: dados.dataset.tamanho,
+               pagina: pagina,
+               origem: btnRemover.closest('.cont_lt_btns').closest('.cont_inf_dt').closest('.cont_lt_face').closest('.cont_list_pr')
+            })
+
+            actualizarEmTempoReal({ pagina: pagina })
+            actualizarNumeroItens()
+            mensagemLista({pagina : pagina})
          })
 
-         actualizarEmTempoReal({ pagina: pagina })
-         actualizarNumeroItens()
+         contLtBtns.appendChild(btnRemover)
+
+
+         // ===========================
+         // MONTAGEM FINAL
+         // ===========================
+         contInfDt.appendChild(contLtItns)
+         contInfDt.appendChild(contLtBtns)
+
+         cont_lt_face.appendChild(contLtImg)
+         cont_lt_face.appendChild(contInfDt)
+
+         contListPr.appendChild(cont_lt_face)
+
+         container_list.appendChild(contListPr)
       })
 
-      contLtBtns.appendChild(btnRemover)
+      div_principal.appendChild(container_list)
+   }
 
-
-      // ===========================
-      // MONTAGEM FINAL
-      // ===========================
-      contInfDt.appendChild(contLtItns)
-      contInfDt.appendChild(contLtBtns)
-
-      cont_lt_face.appendChild(contLtImg)
-      cont_lt_face.appendChild(contInfDt)
-
-      contListPr.appendChild(cont_lt_face)
-
-      container_list.appendChild(contListPr)
-   })
-
-   div_principal.appendChild(container_list)
+   else {
+      div_principal.appendChild(containerVazio())
+   }
 
    return div_principal
 }
 
+export function containerVazio() {
+
+   // CONTAINER MENSAGEM
+   const container_vazio = document.createElement('div')
+   container_vazio.classList.add('container_vazio')
+
+   // MENSAGEM
+   const texto_vazio = document.createElement('p')
+   texto_vazio.textContent = 'Lista vazia'
+   texto_vazio.classList.add('texto_vazio')
+
+   // ICONE 
+   const iconeVazio = document.createElement('span')
+   iconeVazio.innerHTML = shoppingCartOffIcon()
+
+   container_vazio.appendChild(texto_vazio)
+   container_vazio.appendChild(iconeVazio)
+
+   return container_vazio
+}
+
+function mensagemLista({ pagina }) {
+   let lista = pagina == 'lista' ? carrinho : favoritos
+
+   if (lista.length == 0) {
+
+      const div_principal = document.querySelector('.div_principal .container_list')
+
+      if (!div_principal) return
+
+      div_principal.innerHTML = '' // limpa sempre
+
+      div_principal.appendChild(containerVazio())
+   }
+}
 
 
 // REMOVER ITENS DA LISTA 
@@ -207,6 +250,8 @@ function removeItensLista({ id, cor, tamanho, pagina, origem }) {
 
    guardarCarrinho(carrinho)
    guardarFavoritos(favoritos)
+
+
 }
 
 // CONTROLO DE QUANTIDADE ( EVENTOS ENCREMENTAR && DECREMENTAR )
@@ -263,12 +308,12 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
             if (indice !== -1) {
                carrinho.splice(indice, 1)
                origem.remove()
-
                actualizarNumeroItens()
             }
          }
       }
 
+      mensagemLista({ pagina: pagina })
 
       // ACTULIZAR QUANTIDADE DE ITENS NO CARRINHO E NUMEROS 
       numero_quantidade.textContent = item.quantidade
@@ -276,6 +321,7 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
       guardarFavoritos(favoritos)
 
       actualizarEmTempoReal({ pagina: pagina })
+
    }
 
    // BOTÃO +
@@ -314,8 +360,6 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
 
    return container_encremento;
 }
-
-
 
 export function infoCarrinho({ pagina }) {
 
@@ -495,10 +539,10 @@ export function criarResumoPedido({ pagina }) {
 
    btn2.addEventListener('click', () => {
       opcesLista({
-         pagina: pagina ,
-         id : undefined,
-         cor : undefined ,
-         tamanho : undefined
+         pagina: pagina,
+         id: undefined,
+         cor: undefined,
+         tamanho: undefined
       })
    })
 

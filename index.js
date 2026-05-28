@@ -10,7 +10,6 @@ import { carrinho } from "./modulos/carrinho.js";
 import { actualizarNumeroItens } from "./modulos/actualizar.js";
 
 
-
 const paginaActual = 'index'
 const root = document.querySelector('.root')
 if (root) {

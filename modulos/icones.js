@@ -225,3 +225,51 @@ export function closeIcon() {
    </svg>
    `;
 }
+
+
+export function shoppingCartOffIcon() {
+   return `
+   <svg 
+      class="icone_vazio"
+      viewBox="0 0 24 24" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+   >
+      <!-- carrinho -->
+      <path 
+         d="M6 6H4M6 6L7 14C7.1 14.8 7.8 15.5 8.6 15.5H16.5C17.3 15.5 18 14.9 18.1 14.1L19 9H7"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+      />
+
+      <!-- rodas -->
+      <circle 
+         cx="9" 
+         cy="19" 
+         r="1.5" 
+         stroke="currentColor"
+         stroke-width="2"
+      />
+      <circle 
+         cx="16" 
+         cy="19" 
+         r="1.5" 
+         stroke="currentColor"
+         stroke-width="2"
+      />
+
+      <!-- linha OFF -->
+      <line 
+         x1="3" 
+         y1="3" 
+         x2="21" 
+         y2="21"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+      />
+   </svg>
+   `;
+}
