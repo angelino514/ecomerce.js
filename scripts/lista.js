@@ -6,9 +6,9 @@ import { carrinho } from "../modulos/carrinho.js";
 import { itensVendas } from "../bancoDados.js";
 import { infoCarrinho } from "../componentes/informacoes.js";
 import { criarResumoPedido } from "../componentes/informacoes.js";
-import { actualizarEmTempoReal } from "../componentes/informacoes.js";
 import { navegacaoNavbar } from "../modulos/evento.js";
-import { actualizarNumerosCarrinho } from "../index.js";
+import { actualizarNumeroItens } from "../modulos/actualizar.js";
+import { actualizarEmTempoReal } from "../componentes/informacoes.js";
 
 
 const paginaActual = 'lista'
@@ -19,7 +19,7 @@ if (list) {
    list.appendChild(componenteMain({ pagina: paginaActual }))
 
    navegacaoNavbar({ pagina: paginaActual })
-   actualizarNumerosCarrinho(carrinho.length)
+   actualizarNumeroItens()
 }
 
 
@@ -27,10 +27,10 @@ if (list) {
 // ACTIVAR A FUNCAO ATRAVES DO BOTOES CLICADO ( CARRINHO || FAVORITO)
 const containerMain = document.querySelector('.container_main')
 if (containerMain) {
-   containerMain.appendChild(infoCarrinho())
    containerMain.appendChild(criarItemCarrinho({ pagina: paginaActual }))
-   containerMain.appendChild(criarResumoPedido())
-   actualizarEmTempoReal()
+   containerMain.appendChild(criarResumoPedido({ pagina: paginaActual }))
+
+   actualizarEmTempoReal({pagina : paginaActual})
 }
 
 

@@ -5,9 +5,11 @@ import { componenteNavbarMobile } from "./componentes/navbar.js";
 import { componenteFooter } from "./componentes/footer.js";
 import { itensVendas } from "./bancoDados.js";
 import { navegacaoNavbar } from "./modulos/evento.js";
-import { actualizarEmTempoReal } from "./componentes/informacoes.js";
 import { caminhoPaginaDetalhes } from "./modulos/caminhosPaginas.js";
 import { carrinho } from "./modulos/carrinho.js";
+import { actualizarNumeroItens } from "./modulos/actualizar.js";
+
+
 
 const paginaActual = 'index'
 const root = document.querySelector('.root')
@@ -18,7 +20,7 @@ if (root) {
     root.appendChild(componenteFooter())
 
     navegacaoNavbar({ pagina: paginaActual })
-    actualizarEmTempoReal()
+    actualizarNumeroItens()
 }
 
 const container_main = document.querySelector('.container_main')
@@ -49,11 +51,3 @@ if (container_main) {
     }
 
 }
-
-export function actualizarNumerosCarrinho(numero) {
-    const numero_carrinho = document.querySelectorAll('.numero_carrinho')
-    numero_carrinho.forEach(nc => {
-        nc.textContent = numero
-    })
-}
-actualizarNumerosCarrinho(carrinho.length)

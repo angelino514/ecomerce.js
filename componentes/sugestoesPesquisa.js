@@ -1,5 +1,6 @@
 import { onputSugestoes } from "../modulos/evento.js"
 import { dadosPesquisa } from "../modulos/dadospesquisa.js"
+import { searchIconI } from "../modulos/icones.js"
 
 
 // ELEMENTOS DINAMICOES PARA SUGESTOES DE PESQUISA
@@ -49,15 +50,9 @@ export function sugestoesPesquisa({ pagina }) {
    pesuisar.classList.add('pesquisar')
 
    // ICONE DE PESQUISA
-   let icone = document.createElement('img')
-   icone.classList.add('pesquisa_svgs')
-   if(pagina == 'index'){
-      icone.src = 'svgs/search.svg'
-   }
-
-   if( pagina == 'pesquisa' || pagina == 'categoria'){
-      icone.src = '../svgs/search.svg'
-   }
+   let icone = document.createElement('span')
+   icone.classList.add('icone_pesquisar')
+   icone.innerHTML = searchIconI()
 
    //  =============================
    // ORDEM EXACTA 
@@ -105,8 +100,7 @@ export function funcaoListaSugestoes({ valores, pagina }) {
          })
 
          let icon = document.createElement('span')
-         icon.classList.add('material-symbols-outlined')
-         icon.textContent = 'search'
+         icon.innerHTML = searchIconI()
 
          let texto = document.createElement('span')
          texto.textContent = iten

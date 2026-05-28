@@ -1,6 +1,5 @@
 import { componentesHeader } from "../componentes/header.js"
 import { componenteMain } from "../componentes/main.js"
-import { componenteNavbarMobile } from "../componentes/navbar.js"
 import { componenteFooter } from "../componentes/footer.js"
 import { itensVendas } from "../bancoDados.js"
 import { criarProdutos } from "../modulos/criarprodutos.js"
@@ -13,15 +12,12 @@ const categoria = document.querySelector('.categoria')
 if (categoria) {
    categoria.appendChild(componentesHeader({ pagina: paginaActual }))
    categoria.appendChild(componenteMain({ pagina: paginaActual }))
-   categoria.appendChild(componenteNavbarMobile({ pagina: paginaActual }))
    categoria.appendChild(componenteFooter())
 }
 
 const parametros = new URLSearchParams(window.location.search)
 let dados = parametros.get('dados')
 let pagina = parametros.get('pagina')
-
-
 
 
 if (dados != null) {

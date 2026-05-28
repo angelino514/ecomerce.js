@@ -6,7 +6,7 @@ import { favoritos } from "../modulos/favoritos.js"
 import { arrowLeftIcon } from "../modulos/icones.js"
 import { arrowRightIcon } from "../modulos/icones.js"
 import { heartIcon } from "../modulos/icones.js"
-import { actualizarNumerosCarrinho } from "../index.js"
+import { exbirMensagem } from "./mensagem.js"
 
 // ===============================
 // DADOS DA COMPRA 
@@ -138,6 +138,7 @@ export function detalhesProduto({ id, pagina }) {
    // FAVORITOS
    const btnFavorito = document.createElement('button')
    btnFavorito.dataset.accao = 'favorito'
+   btnFavorito.dataset.botao = 'msgFavorito'
    btnFavorito.classList.add(
       'buttons_accao',
       'btn_favorito',
@@ -150,9 +151,12 @@ export function detalhesProduto({ id, pagina }) {
          tamanho: tamanhoSelecionado,
          accao: btnFavorito.dataset.accao
       })
+
+      // EXIBIR MENSAGEM DE ADD AS LISTAS
+      exbirMensagem({ botao: btnFavorito.dataset.botao })
    })
 
-   const svgFavorito = document.createElement('img')
+   const svgFavorito = document.createElement('span')
    svgFavorito.innerHTML = heartIcon()
    svgFavorito.classList.add('svgs')
 
@@ -160,6 +164,7 @@ export function detalhesProduto({ id, pagina }) {
 
    // PEDIDO
    const btnPedido = document.createElement('button')
+   btnPedido.dataset.accao = 'pedido'
    btnPedido.classList.add(
       'buttons_accao',
       'btn_pedido',
@@ -172,6 +177,7 @@ export function detalhesProduto({ id, pagina }) {
          id: id,
          cor: coreSelecionada,
          tamanho: tamanhoSelecionado,
+         accao: btnPedido.dataset.accao
       })
    })
 
@@ -180,6 +186,7 @@ export function detalhesProduto({ id, pagina }) {
    // CARRINHO
    const btnCarrinho = document.createElement('button')
    btnCarrinho.dataset.accao = 'carrinho'
+   btnCarrinho.dataset.botao = 'msgCarrinho'
    btnCarrinho.classList.add(
       'buttons_accao',
       'btn_carrinho',
@@ -197,8 +204,8 @@ export function detalhesProduto({ id, pagina }) {
          accao: btnCarrinho.dataset.accao
       })
 
-      // ACTULIZAR NUMEROS DO CARRINHO 
-      actualizarNumerosCarrinho(carrinho.length)
+      // EXIBIR MENSAGEM DE ADD AS LISTAS
+      exbirMensagem({ botao: btnCarrinho.dataset.botao })
    })
 
    // ADICIONAR BOTÕES

@@ -56,5 +56,11 @@ export function caminhosPaginasNavbar({ accao, pagina, botao }) {
     }
   }
 
-}     
+}
+
+
+// EXBIR A LISTA DOS ITENS DISONIVEL PARA SEREM FINALIZADO
+export function opcesLista({ pagina , id , cor , tamanho }) {
+  window.location.href = `../itens/finalizar.html?pagina=${pagina}&id=${id}&cor=${cor}&tamanho=${tamanho}`
+}
 

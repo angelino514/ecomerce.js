@@ -21,6 +21,7 @@ function componenteCarrossel({ pagina }) {
    })
 
    let iconLeft = document.createElement('span');
+   iconLeft.classList.add('scrool_arrows')
    iconLeft.innerHTML = arrowLeftIcon()
 
    btnLeft.appendChild(iconLeft);
@@ -34,6 +35,7 @@ function componenteCarrossel({ pagina }) {
    })
 
    let iconRight = document.createElement('span');
+   iconRight.classList.add('scrool_arrows')
    iconRight.innerHTML = arrowRightIcon()
 
    btnRight.appendChild(iconRight);
@@ -122,7 +124,7 @@ export function componenteMain({ pagina }) {
    main.appendChild(containerMain);
 
    if (pagina == 'categoria' || pagina == 'pesquisa' || pagina == 'detalhes'
-      || pagina == 'lista' || pagina == 'favoritos') {
+      || pagina == 'lista' || pagina == 'favoritos' || pagina == 'finalizar') {
       container_benners.classList.add('ocultar')
       carrossel_categoria.classList.add('ocultar')
       main.classList.add('main_activo')

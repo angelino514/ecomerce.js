@@ -5,8 +5,12 @@ import { cartIconI } from "../modulos/icones.js";
 import { heartIcon } from "../modulos/icones.js";
 import { arrowBackIcon } from "../modulos/icones.js";
 import { caminhosPaginasNavbar } from "../modulos/caminhosPaginas.js";
+import { carrinho } from "../modulos/carrinho.js";
+import { actualizarNumeroItens } from "../modulos/actualizar.js";
+
 
 export function componentesHeader({ pagina }) {
+
    // HEADER
    let header = document.createElement('header');
    header.classList.add('header');
@@ -71,8 +75,6 @@ export function componentesHeader({ pagina }) {
    let numero_itens = document.createElement('span');
    numero_itens.classList.add('numeros_absulute', 'numero_carrinho');
    numero_itens.dataset.numero = 'numero_itens'
-   numero_itens.textContent = '0';
-
 
    // NAVBAR SCROLL DO HEADER
    let navbar_header = document.createElement('nav')
@@ -100,7 +102,7 @@ export function componentesHeader({ pagina }) {
    // SE A PAGINA FOR CARRINHO OU PESQUISA
    if (pagina == 'carrinho' || pagina == 'pesquisa'
       || pagina == 'categoria' || pagina == 'detalhes'
-      || pagina == 'lista' || pagina == 'favoritos') {
+      || pagina == 'lista' || pagina == 'favoritos'  || pagina == 'finalizar') {
       logo.appendChild(back_button)
       back_button.appendChild(back_icon)
    }
@@ -137,7 +139,7 @@ export function componentesHeader({ pagina }) {
    }
 
    //  SE A PAGINA FOR LISTA
-   if (pagina == 'lista' || pagina == 'favoritos') {
+   if (pagina == 'lista' || pagina == 'favoritos' || pagina == 'finalizar') {
       container_input.classList.add('ocultar')
       container_buttons_list.classList.add('ocultar')
       favorite.classList.add('ocultar')
@@ -172,3 +174,5 @@ export function componentesHeader({ pagina }) {
    // retorno final
    return header;
 }
+
+

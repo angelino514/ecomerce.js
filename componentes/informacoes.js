@@ -1,14 +1,22 @@
 import { itensVendas } from "../bancoDados.js";
-import { actualizarNumerosCarrinho } from "../index.js";
 import { carrinho } from "../modulos/carrinho.js";
 import { guardarCarrinho } from "../modulos/carrinho.js";
 import { favoritos } from "../modulos/favoritos.js";
 import { guardarFavoritos } from "../modulos/favoritos.js";
-import { deleteIcon } from "../modulos/icones.js";
-
+import { deleteIcon, searchIconI } from "../modulos/icones.js";
+import { menuAltIcon } from "../modulos/icones.js";
+import { actualizarNumeroItens } from "../modulos/actualizar.js";
+import { opcesLista } from "../modulos/caminhosPaginas.js";
+import { closeIcon } from "../modulos/icones.js";
 
 // ELEMENTOS DINAMICOS DA LISTA
 export function criarItemCarrinho({ pagina }) {
+
+
+   const div_principal = document.createElement('div')
+   div_principal.classList.add('div_principal')
+
+   div_principal.appendChild(infoCarrinho({ pagina: pagina }))
 
    const container_list = document.createElement('div')
    container_list.classList.add('container_list')
@@ -150,8 +158,8 @@ export function criarItemCarrinho({ pagina }) {
             origem: btnRemover.closest('.cont_lt_btns').closest('.cont_inf_dt').closest('.cont_lt_face').closest('.cont_list_pr')
          })
 
-          actualizarEmTempoReal()
-          actualizarNumerosCarrinho(carrinho.length)
+         actualizarEmTempoReal({ pagina: pagina })
+         actualizarNumeroItens()
       })
 
       contLtBtns.appendChild(btnRemover)
@@ -171,7 +179,9 @@ export function criarItemCarrinho({ pagina }) {
       container_list.appendChild(contListPr)
    })
 
-   return container_list
+   div_principal.appendChild(container_list)
+
+   return div_principal
 }
 
 
@@ -253,6 +263,8 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
             if (indice !== -1) {
                carrinho.splice(indice, 1)
                origem.remove()
+
+               actualizarNumeroItens()
             }
          }
       }
@@ -262,6 +274,8 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
       numero_quantidade.textContent = item.quantidade
       guardarCarrinho(carrinho)
       guardarFavoritos(favoritos)
+
+      actualizarEmTempoReal({ pagina: pagina })
    }
 
    // BOTÃO +
@@ -275,10 +289,6 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
          botao: 'encrementar',
          origem: container_encremento.closest('.cont_lt_btns').closest('.cont_inf_dt').closest('.cont_lt_face').closest('.cont_list_pr')
       })
-
-      // ACTUALIZAR EM TEMPO REAL 
-      actualizarEmTempoReal()
-      actualizarNumerosCarrinho(carrinho.length)
    })
 
    // BOTÃO -
@@ -294,8 +304,7 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
       })
 
       // ACTUALIZAR EM TEMPO REAL 
-      actualizarEmTempoReal()
-      actualizarNumerosCarrinho(carrinho.length)
+      actualizarEmTempoReal({ pagina: pagina })
    })
 
    // ORDEM (IMPORTANTE)
@@ -308,34 +317,52 @@ function criarControleQuantidade({ id, cor, tamanho, pagina }) {
 
 
 
-export function infoCarrinho() {
+export function infoCarrinho({ pagina }) {
+
+   let inf_h2 = pagina == 'lista'
+      ? 'Carrinho'
+      : 'Favoritos'
 
    // CONTAINER
    const infCbc = document.createElement('div')
    infCbc.classList.add('inf_cbc')
 
+   const cont_inf_c = document.createElement('div')
+   cont_inf_c.classList.add('cont_inf_c')
 
    // TITULO
    const titulo = document.createElement('h2')
    titulo.classList.add('inf_cbc_h2')
-   titulo.textContent = 'Seu carrinho'
+   titulo.textContent = inf_h2
 
 
-   // TEXTO
-   const texto = document.createElement('p')
-   texto.classList.add('inf_txt_cbc')
-   texto.textContent = 'Seu carrinho '
+   const botao_inf = document.createElement('button')
+   botao_inf.classList.add('botao_inf')
+   botao_inf.innerHTML = menuAltIcon()
 
+   botao_inf.addEventListener('click', () => {
+
+      const container_resumo = document.querySelector('.container_resumo')
+      container_resumo.classList.add('mobile_flex')
+
+      setTimeout(() => {
+         container_resumo.classList.add('flex_fadIn')
+      }, 100)
+
+   })
 
    // ADICIONAR ELEMENTOS
-   infCbc.appendChild(titulo)
-   infCbc.appendChild(texto)
+   cont_inf_c.appendChild(titulo)
 
+   infCbc.appendChild(cont_inf_c)
+   infCbc.appendChild(botao_inf)
 
    return infCbc
 }
 
-export function criarResumoPedido() {
+
+
+export function criarResumoPedido({ pagina }) {
 
    // ELEMENTO PAI
    const container_resumo = document.createElement('div')
@@ -349,6 +376,24 @@ export function criarResumoPedido() {
    const cont_resumo = document.createElement('div')
    cont_resumo.classList.add('cont_resumo')
 
+
+   // CONTAINER BUTTON
+   const div_btn_rm_res = document.createElement('div')
+   div_btn_rm_res.classList.add('div_btn_rm_res')
+
+   // BOTAO REMOVER 
+   const btn_remover_res = document.createElement('button')
+   btn_remover_res.classList.add('.btn_remover_res')
+   btn_remover_res.innerHTML = closeIcon()
+
+   btn_remover_res.addEventListener('click', () => {
+      const container_resumo = document.querySelector('.container_resumo')
+      container_resumo.classList.remove('mobile_flex', 'flex_fadIn')
+   })
+
+   div_btn_rm_res.appendChild(btn_remover_res)
+
+   cont_resumo.appendChild(div_btn_rm_res)
 
    // h2
    const titulo = document.createElement('h2')
@@ -391,7 +436,6 @@ export function criarResumoPedido() {
 
    const span4 = document.createElement('span')
    span4.classList.add('spn_itn_resumo', 'frete')
-   span4.textContent = '2000kz'
 
    item2.appendChild(span3)
    item2.appendChild(span4)
@@ -411,8 +455,7 @@ export function criarResumoPedido() {
    span5.textContent = 'Total'
 
    const span6 = document.createElement('span')
-   span6.classList.add('spn_itn_resumo')
-   span6.textContent = '9000kz'
+   span6.classList.add('spn_itn_resumo', 'totalResumo')
 
    item3.appendChild(span5)
    item3.appendChild(span6)
@@ -434,31 +477,61 @@ export function criarResumoPedido() {
    // BOTÃO 1
    const btn1 = document.createElement('button')
    btn1.classList.add('btns_resumos', 'continuar')
-   btn1.textContent = 'Continuarc comprando'
+   btn1.textContent = 'Continuar comprando'
+
+
+   btn1.addEventListener('click', () => {
+      window.location.href = '../index.html'
+   })
 
    container_btns.appendChild(btn1)
 
    // BOTÃO 2
    const btn2 = document.createElement('button')
-   btn2.classList.add('btns_resumos', 'finalizar')
+   btn2.classList.add('btns_resumos', 'btn_rs_fin')
    btn2.textContent = 'Finalizar compra'
+   btn2.dataset.botao = 'finalizarCompra'
+
+
+   btn2.addEventListener('click', () => {
+      opcesLista({
+         pagina: pagina ,
+         id : undefined,
+         cor : undefined ,
+         tamanho : undefined
+      })
+   })
 
    container_btns.appendChild(btn2)
 
    // ADICIONANDO BOTÕES NO PAI
    container_resumo.appendChild(container_btns)
 
-
    return container_resumo
 }
 
-export function actualizarEmTempoReal() {
+
+// INFORMACOES DOS ITENS ( PRECO \ TOTAL E FRETE )
+export function actualizarEmTempoReal({ pagina }) {
+
+   const spn_subtotal = document.querySelector('.subtotal')
+   const spn_frete = document.querySelector('.frete')
+   const totalResumo = document.querySelector('.totalResumo')
+
+   let listaOpcoes = pagina == 'lista'
+      ? carrinho : favoritos
+
    let subtotal = 0
-   let spn_subtotal = document.querySelector('.subtotal')
-   if (spn_subtotal) {
-      carrinho.forEach(cn => {
-         subtotal += cn.quantidade * cn.preco
-         spn_subtotal.textContent = `${subtotal}Kz`
-      })
-   }
+   let frete = 0
+
+   listaOpcoes.forEach(lp => {
+      subtotal += lp.preco * lp.quantidade
+      frete += lp.quantidade * 800
+
+   })
+
+   spn_subtotal.textContent = `${subtotal}Kz` ?? 0
+   spn_frete.textContent = `${frete}Kz` ?? 0
+   totalResumo.textContent = `${subtotal + frete}Kz` ?? 0
+
 }

@@ -2,6 +2,8 @@ import { detalhesProduto } from "../componentes/detalhes.js";
 import { componentesHeader } from "../componentes/header.js";
 import { componenteMain } from "../componentes/main.js";
 import { componenteFooter } from "../componentes/footer.js";
+import { mensagemAdd } from "../componentes/mensagem.js";
+
 
 const paginaActual = 'detalhes'
 const detalhes = document.querySelector('.detalhes')
@@ -19,5 +21,9 @@ if (id != null) {
    const main = document.querySelector('main')
    if (main) { 
       main.appendChild(detalhesProduto({id :  Number(id) , pagina : paginaActual}))
+      main.appendChild(mensagemAdd())
+
+      console.log(mensagemAdd())
    }
 }
+ 

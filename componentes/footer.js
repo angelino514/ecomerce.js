@@ -16,6 +16,7 @@ export function componenteFooter() {
 
    let title1 = document.createElement('h3');
    title1.textContent = 'E-STORE';
+   title1.classList.add('title_footer')
 
    let desc = document.createElement('p');
    desc.textContent = 'Loja online criada para oferecer produtos variados com qualidade e bons preços.';
@@ -31,6 +32,7 @@ export function componenteFooter() {
 
    let title2 = document.createElement('h3');
    title2.textContent = 'Informações';
+   title2.classList.add('title_footer')
 
    let ul = document.createElement('ul');
 
@@ -58,6 +60,7 @@ export function componenteFooter() {
 
    let title3 = document.createElement('h3');
    title3.textContent = 'Contactos';
+   title3.classList.add('title_footer')
 
    let email = document.createElement('p');
    email.textContent = 'Email: suporte@estore.com';
@@ -81,6 +84,7 @@ export function componenteFooter() {
 
    let title4 = document.createElement('h3');
    title4.textContent = 'Redes Sociais';
+   title4.classList.add('title_footer')
 
    let redes = document.createElement('p');
    redes.textContent = 'Facebook | Instagram | WhatsApp';
@@ -109,6 +113,6 @@ export function componenteFooter() {
 
    footer.appendChild(footerContent);
    footer.appendChild(footerBottom);
-   
+
    return footer;
 }

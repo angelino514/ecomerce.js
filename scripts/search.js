@@ -8,8 +8,8 @@ import { normalizarTexto } from "../modulos/nomralizar.js";
 import { navegacaoNavbar } from "../modulos/evento.js";
 import { sugestoesIniciais } from "../modulos/sgstInicial.js";
 import { categorias } from "../modulos/categorias.js";
-import { actualizarNumerosCarrinho } from "../index.js";
 import { carrinho } from "../modulos/carrinho.js";
+import { actualizarNumeroItens } from "../modulos/actualizar.js";
 
 
 const paginaActual = 'pesquisa'
@@ -21,7 +21,7 @@ if (search) {
    search.appendChild(componenteFooter())
 
    navegacaoNavbar({ pagina: paginaActual })
-   actualizarNumerosCarrinho(carrinho.length)
+    actualizarNumeroItens()
 }
 
 const parametros = new URLSearchParams(window.location.search)

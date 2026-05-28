@@ -36,6 +36,11 @@ body {
    border-radius: 50px;
 }
 
+.icon {
+   width: 25px;
+   height: 25px;
+}
+
 input {
    outline: none;
    background-color: transparent;
@@ -45,12 +50,6 @@ input {
 /* OCULTAR ITENS DO HEADER EM DIFERENTES PAGINA */
 .ocultar {
    display: none !important;
-}
-
-
-.svgs {
-   width: 30px;
-   height: 30px;
 }
 
 /* ===================================
@@ -65,6 +64,7 @@ input {
    --color-add: #006A60;
    --color-promocao: #80F2E1;
    --color-border: #090B0A;
+   --color-secundary: #F0F4FF;
 }
 
 .face {
@@ -121,7 +121,6 @@ a {
 LOGO
 =======================================
  */
-
 .logo {
    display: flex;
    align-items: center;
@@ -188,10 +187,8 @@ LOGO
    width: 15%;
 }
 
-.pesquisa_svgs {
+.icone_pesquisar>.icnes_navbar {
    width: 18px;
-   object-fit: contain;
-   aspect-ratio: 1/1;
 }
 
 .container_sugestoes {
@@ -233,6 +230,10 @@ container_buttons_list
 
 .navbar_mobile {
    display: none !important;
+}
+
+.icnes_navbar {
+   width: 25px;
 }
 
 .button_list {
@@ -353,6 +354,8 @@ CONTEUDO PRINCIPAL
    color: #fff;
    font-size: 1rem;
    border-radius: 5px;
+   position: absolute;
+   z-index: 1;
 }
 
 /*========================= 
@@ -398,18 +401,29 @@ CARROSSEL SCROL
    height: 180px;
    margin: 2rem auto !important;
    position: relative;
+   display: flex;
+   align-items: center;
 }
 
 .buttons_carrossel {
    position: absolute;
-   top: 40%;
-   background-color: #1e1e1e;
+   background-color: #1e1e1e25;
    color: #fff;
    z-index: 1;
+   padding: 0.5rem 0 !important;
+}
+
+.scrool_arrows>.icon {
+   width: 40px;
+   color: var(--color-add);
 }
 
 .rith {
    right: 0;
+}
+
+.scrool_arrows>.icnes_navbar {
+   width: 300px;
 }
 
 .buttons_carrossel>.material-symbols-outlined {
@@ -483,25 +497,18 @@ CARROSSEL SCROL
    background: #1e1e1e;
    color: #fff;
    padding: 2rem 0 !important;
-
 }
 
 .footer-content {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   gap: 20px;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+   gap: 0.5rem;
 }
 
-
-
-.footer-section {
-   flex: 1;
-   min-width: 200px;
-}
-
-.footer-section h3 {
-   color: var(--color-add);
+.title_footer {
+   font-size: 1rem;
+   color: #fff;
+   margin-bottom: 0.5rem !important;
 }
 
 .footer-section ul {
@@ -511,6 +518,7 @@ CARROSSEL SCROL
 .footer-section ul li {
    cursor: pointer;
    transition: 0.3s;
+   font-size: 0.9rem;
 }
 
 .footer-section ul li:hover {
@@ -658,6 +666,33 @@ CARROSSEL SCROL
    color: #fff;
 }
 
+/*  CONTAINER MENSAGEM */
+.container_sms {
+   display: none;
+}
+
+.container_sms_flex {
+   width: 100%;
+   display: flex;
+   position: fixed;
+   z-index: 1000;
+   top: 45%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.mensagem {
+   padding: 2rem 0 !important;
+   width: 60vw;
+   max-width: 400px;
+   background-color: #000000b2;
+   color: #fff;
+   text-align: center;
+   font-size: 0.9rem;
+   flex-shrink: 0;
+}
+
 
 /* CONTAINER EMCREMENTRO E DECREMENTO */
 .container_encremento {
@@ -667,8 +702,9 @@ CARROSSEL SCROL
    width: fit-content;
    align-items: center;
    border-radius: 30px;
-   border: 1px solid #000;
+   border: 1px solid #006a5f10;
    margin: 1rem 0 !important;
+   background-color: var(--color-secundary);
 }
 
 .button_quantidade {
@@ -706,13 +742,12 @@ CARROSSEL SCROL
    border: 1px solid transparent;
    border-radius: 5px;
    cursor: pointer;
-   background-color: var(--cinza-claro);
+   background-color: var(--color-header);
 }
 
 .label_activo {
-   border: 1px solid var(--color-border);
+   border: 1px solid var(--color-add);
    color: var(--color-border);
-   ;
 }
 
 .img_sg_in {
@@ -803,22 +838,36 @@ CARROSSEL SCROL
     ====================================================
  */
 .grid_list {
-   display: flex;
-   flex-direction: column;
+   width: 95%;
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   gap: 2rem;
+   height: 85vh;
+   overflow-y: hidden;
+}
+
+.div_principal {
+   width: 100%;
+   height: 100%;
 }
 
 .inf_cbc {
-   padding: 2rem 0 !important;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
 }
 
-.inf_txt_cbc {
-   font-size: 0.9rem;
-   margin-top: 0.2rem !important;
+.botao_inf {
+   display: none;
 }
 
+.container_list {
+   width: 100%;
+   height: 80vh;
+   overflow-y: auto;
+}
 
 .cont_list_pr {
-   max-width: 650px;
    background-color: var(--color-header);
    margin: 1rem 0 !important;
    padding: 1rem 0 !important;
@@ -883,20 +932,20 @@ CARROSSEL SCROL
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   position: fixed;
-   right: 10%;
-   top: 5rem;
-   width: 30vw;
-   max-width: 600px;
-   min-width: 400px;
-   background-color: var(--color-header);
+   background-color: var(--color-secundary);
+   border-radius: 10px;
    padding: 2rem 0 !important;
+   height: fit-content;
 }
 
 .cont_resumo {
    padding: 2rem !important;
    display: flex;
    flex-direction: column;
+}
+
+.div_btn_rm_res {
+   display: none;
 }
 
 .itn_resumo {
@@ -920,18 +969,169 @@ CARROSSEL SCROL
 .btns_resumos {
    flex-shrink: 0;
    padding: 1rem 0 !important;
-}
-
-.finalizar {
-   background-color: var(--color-add);
-   color: #fff;
+   border-radius: 10px;
 }
 
 .continuar {
    border: 1px solid var(--color-border);
 }
 
-/* == ==============================
+.btn_rs_fin {
+   background-color: var(--color-add);
+   color: #fff;
+}
+
+/* 
+   ===========================================
+    CONFIGURACOES PARA FINALIZAR COMPRA
+   ===========================================
+ */
+.container_finalizar {
+   width: 100%;
+}
+
+.container_finalizar {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.container_finalizar>.face {
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   max-width: 800px;
+   gap: 1rem;
+}
+
+.dw_itn_fm {
+   background-color: var(--color-header);
+   padding: 2rem 0 !important;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.tilte_fn {
+   width: 90%;
+   margin-bottom: 0.5rem !important;
+}
+
+.dO_cont_itn {
+   width: 90%;
+   display: flex;
+   flex-direction: column;
+   margin: 0.5rem 0 !important;
+   gap: 0.5rem;
+}
+
+.int_fm_itn {
+   padding: 0.8rem 0.5rem !important;
+   background-color: var(--color-primary);
+   border: 1px solid #006a5f15;
+}
+
+.dO_whatsap {
+   width: 100%;
+   margin-top: 2rem !important;
+   background-color: var(--color-header);
+   padding: 2rem 0 !important;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.cont_itn_wtp,
+.dO_cont_itn {
+   width: 90%;
+}
+
+.itn_wtp_h2 {
+   margin: 0.5rem !important;
+}
+
+.dO_cmpt {
+   width: 100%;
+   background-color: var(--color-header);
+   margin-top: 2rem !important;
+   padding: 2rem 0 !important;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.int_cmpt_cont {
+   width: 90%;
+}
+
+.txt_cmp {
+   margin: 1rem 0 !important;
+}
+
+.span_inps_msg {
+   font-size: 0.8rem;
+   color: red;
+}
+
+.int_lb_cmpt {
+   padding: 5rem 0 !important;
+   width: 100%;
+   background-color: var(--color-primary);
+   border: 1px solid #006a5f15;
+}
+
+#dO_cmpt {
+   display: none;
+}
+
+.cont_rs_pd {
+   max-height: fit-content;
+   padding: 2rem 0 !important;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.dO_itn_pd {
+   margin: 1rem 0 !important;
+   width: 90%;
+}
+
+.cont_int_rs_inf {
+   width: 90%;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+   border-top: 1px solid #006a5f62;
+}
+
+.do_int_rs {
+   margin: 0.5rem 0 !important;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+}
+
+.btn_conf {
+   width: 90%;
+   padding: 1rem 0 !important;
+   background-color: var(--color-border);
+   color: #fff;
+   font-size: 0.9rem;
+   margin-top: 1rem !important;
+   border-radius: 5px;
+}
+
+
+
+/* ================================
 RESPONSIVIDADE 
 ===================================
 */
@@ -986,7 +1186,8 @@ RESPONSIVIDADE
       border-radius: 10px;
    }
 
-   /*  =====================================
+   /*  
+      =====================================
        CONFIGURACOES DA PAGINA DE DETALHES
       =====================================
    */
@@ -996,20 +1197,16 @@ RESPONSIVIDADE
    }
 
    .content_detalhes {
-      max-width: none;
+      max-width: unset;
    }
 
    .scrroll_container_imgs {
       width: 50%;
    }
 
-   /* 
-      ================================================
-       CONFIGURACAO DA PAGAINA LISTA
-      ================================================
-    */
-   .container_resumo {
-      display: none;
+   /* LISTA DOS IENS */
+   .grid_list {
+      grid-template-columns: 2fr 1fr;
    }
 }
 
@@ -1072,6 +1269,10 @@ RESPONSIVIDADE
       padding: 0.5rem !important;
    }
 
+   .icnes_navbar {
+      width: 25px;
+   }
+
    .link_activo .icon {
       color: var(--color-add);
    }
@@ -1097,9 +1298,10 @@ RESPONSIVIDADE
       grid-template-columns: repeat(2, 1fr);
    }
 
-   /*======================================== 
+   /*  
+      ======================================== 
         BANNERS
-      ===========================================
+      ========================================
     */
    .baners_itens {
       width: 100% !important;
@@ -1118,7 +1320,8 @@ RESPONSIVIDADE
       font-size: 0.9rem;
    }
 
-   /* =====================================
+   /*
+      =====================================
        CONFIGURACOES DA PAGINA DE DETALHES
       =====================================
    */
@@ -1179,5 +1382,86 @@ RESPONSIVIDADE
 
    .img_inf_itn {
       max-height: 250px;
+   }
+
+   /* 
+   =======================================
+   FOOTER
+   =======================================
+   */
+   .footer-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+   }
+
+   /*  ===================================================
+     CONTAIENER LIST  ( PAGINA LISTA)
+    ====================================================
+ */
+   .grid_list {
+      width: 95%;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      height: unset;
+      overflow-y: unset;
+   }
+
+   .container_list {
+      overflow-y: unset;
+      height: unset;
+   }
+
+   .botao_inf {
+      display: flex;
+   }
+
+   /* RESUMO DE PEDIDO */
+   .container_resumo {
+      position: fixed;
+      width: 90%;
+      left: 5%;
+      right: 5%;
+      display: none;
+   }
+
+   .mobile_flex {
+      display: flex;
+      transform: scale(0.9) translateY(10px);
+      opacity: 0;
+   }
+
+   .flex_fadIn {
+      transform: translateY(0);
+      opacity: 1;
+      transition: .2s ease-in-out;
+   }
+
+   .div_btn_rm_res {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: absolute;
+      top: 5%;
+      width: 90%;
+   }
+
+   .btn_remover_res {
+      padding: 0.2rem !important;
+   }
+
+   /* 
+    ===========================================
+    CONFIGURACOES PARA FINALIZAR COMPRA
+    ===========================================
+  */
+   .container_finalizar>.face {
+      grid-template-columns: 1fr;
+   }
+
+   /* LISTA DOS IENS */
+   .grid_list {
+      grid-template-columns: 1fr;
    }
 }

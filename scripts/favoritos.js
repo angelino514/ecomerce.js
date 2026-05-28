@@ -4,8 +4,10 @@ import { componenteMain } from "../componentes/main.js"
 import { componenteFooter } from "../componentes/footer.js"
 import { criarItemCarrinho } from "../componentes/informacoes.js"
 import { navegacaoNavbar } from "../modulos/evento.js"
-import { actualizarNumerosCarrinho } from "../index.js"
 import { carrinho } from "../modulos/carrinho.js"
+import { actualizarNumeroItens } from "../modulos/actualizar.js"
+import { criarResumoPedido } from "../componentes/informacoes.js"
+import { actualizarEmTempoReal } from "../componentes/informacoes.js"
 
 
 
@@ -20,7 +22,7 @@ if (favoritos) {
    favoritos.appendChild(componenteFooter())
 
    navegacaoNavbar({ pagina: paginaActual })
-   actualizarNumerosCarrinho(carrinho.length)
+   actualizarNumeroItens()
 }
 
 
@@ -28,4 +30,7 @@ if (favoritos) {
 const containerMain = document.querySelector('.container_main')
 if (containerMain) {
    containerMain.appendChild(criarItemCarrinho({ pagina: paginaActual }))
+   containerMain.appendChild(criarResumoPedido({pagina : paginaActual}))
+
+  actualizarEmTempoReal({pagina : paginaActual})
 }

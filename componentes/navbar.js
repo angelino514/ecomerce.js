@@ -1,9 +1,15 @@
 import { caminhosPaginasNavbar } from "../modulos/caminhosPaginas.js";
+import { leituraDados } from "../modulos/contador.js";
+import { guardarDados } from "../modulos/contador.js";
 import { homeLockIcon } from "../modulos/icones.js";
 import { searchIconI } from "../modulos/icones.js";
 import { heartIcon } from "../modulos/icones.js";
 import { cartIconI } from "../modulos/icones.js";
+import { carrinho } from "../modulos/carrinho.js";
 
+
+// EXIBIR NUMERO DE CARRINHO
+guardarDados(carrinho.length)
 
 export function componenteNavbarMobile({ pagina }) {
 
@@ -88,7 +94,6 @@ export function componenteNavbarMobile({ pagina }) {
    let cartNumber = document.createElement('span');
    cartNumber.classList.add('numeros_absulute', 'abslute_mobile', 'numero_carrinho');
    cartNumber.dataset.numero = 'numero_itens'
-   cartNumber.textContent = '0';
 
    let cartText = document.createElement('span');
    cartText.classList.add('text_span_link');

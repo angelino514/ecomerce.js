@@ -3,12 +3,12 @@ import { itensVendas } from "../bancoDados.js"
 import { guardarCarrinho } from "./carrinho.js"
 import { favoritos } from "./favoritos.js"
 import { guardarFavoritos } from "./favoritos.js"
-
+import { actualizarNumeroItens } from "./actualizar.js"
+import { opcesLista } from "./caminhosPaginas.js"
 
 
 // INFORMACOES DE COMPRA && ADICONAR AO CARRINHO E FAVORITOS
 export function addProdutosCompra({ id, cor, tamanho, accao }) {
-
 
    let itenPreco = itensVendas.find(p => p.id == id)
    if (!itenPreco) return
@@ -46,8 +46,19 @@ export function addProdutosCompra({ id, cor, tamanho, accao }) {
       }
    }
 
+   else if (accao == 'pedido') {
+      opcesLista({
+         pagina: 'detalhes',
+         id: id,
+         cor: cor,
+         tamanho: tamanho
+      })
+   }
+
+   actualizarNumeroItens()
    guardarFavoritos(favoritos)
    guardarCarrinho(carrinho)
 }
+
 
 

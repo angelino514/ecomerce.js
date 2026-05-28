@@ -66,6 +66,7 @@ export function navegacaoNavbar({ pagina }) {
 
          link.classList.add('link_activo')
       })
-   }) 
+   })
 
 }
+
